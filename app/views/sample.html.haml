@@ -1,0 +1,863 @@
+%body.page.page--project.row-basic{:style => ""}
+  #fb-root.fb_reset
+    %div{:style => "position: absolute; top: -10000px; height: 0px; width: 0px;"}
+      %div
+        %iframe#fb_xdm_frame_https{:allowtransparency => "true", "aria-hidden" => "true", :frameborder => "0", :name => "fb_xdm_frame_https", :scrolling => "no", :src => "https://s-static.ak.facebook.com/connect/xd_arbiter/2_ZudbRXWRs.js?version=41#channel=f3110965a4&origin=https%3A%2F%2Ftumblbug.com", :style => "border: none;", :tabindex => "-1", :title => "Facebook Cross Domain Communication Frame"}
+    %div{:style => "position: absolute; top: -10000px; height: 0px; width: 0px;"}
+      %div
+  /
+    todo : not_for_mobile
+  .b-masthead-frame.is_popped.is_stuck_to_top
+    .b-masthead.js-masthead{"data-url" => "/ko", :role => "banner"}
+      .container
+        .b-masthead__logo{:title => "tumblbug, Inc."}
+          %a.b-masthead__logo__inner{:href => "/ko"} Tumblbug
+        %ul.b-masthead__menu.js-primaryMenu{:role => "navigation"}
+          %li.b-masthead__menu__item
+            %a.b-masthead__menu__item__link{:href => "/ko/projects"} 프로젝트 찾아보기
+          %li.b-masthead__menu__item
+            %a.b-masthead__menu__item__link{:href => "/ko/start"} 프로젝트 만들기
+        / TODO: 둘 중 하나 js 제거
+        %form.b-masthead__search.js-masthead__search.is_locked{"accept-charset" => "UTF-8", :action => "/ko/projects", :method => "post", :style => "left:358px; top:0;"}
+          %div{:style => "margin:0;padding:0;display:inline"}
+            %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+            %input{:name => "authenticity_token", :type => "hidden", :value => "DA3vbOKbDnSJO5Ufh+b79cZ409SDLV5DHSprhbvVtfQ="}/
+          %label.text-visible_no{:for => "query"} 프로젝트 검색:
+          %input#query.input.input--clear.input--search.input--short.col-5.footnote-size.js-masthead__search__field{:name => "query", :placeholder => "프로젝트를 검색해보세요!", :style => "border-bottom:0; line-height: 17px;", :type => "search", :value => ""}/
+        %ul.b-masthead__menu.b-masthead__menu--sub{:role => "navigation"}
+          %li.b-masthead__menu__item
+            %a.b-masthead__menu__item__link{:href => "/ko/help"} 도움말
+          %li.b-masthead__menu__item
+            %a.login_btn.b-masthead__menu__item__link{:href => "/ko/login?redirection=https%3A%2F%2Ftumblbug.com%2Fwoody"} 로그인
+          %li.b-masthead__menu__item
+            %a.signup_btn.b-masthead__menu__item__link.remove_right{:href => "/ko/join?redirection=https%3A%2F%2Ftumblbug.com%2Fwoody"} 회원가입
+          / if
+        / menu secondary
+        :javascript
+          $(document).ready(function(e){
+            Tumblbug.views.masthead_view({
+              pledge_process: false, 
+              is_ie8: false,
+              dummy: ''
+            });
+          });
+        .b-pong.t0{:style => "display: none;"}
+      / b-masthead_wrap
+      .u-clear
+      / b-masthead
+  .spacer{:style => "height: 52px;"}
+  :javascript
+    $(document).ready(function (e) {
+      Tumblbug.views.notifications_view();
+    });
+  .b-subhead.is_hide_to_top.is_vaporized
+    .container
+      .fullwidth
+        .b-panel.b-panel--theme_board.b-panel--subhead
+          .b-panel__body
+            %ul.b-menu.b-menu--subhead.lfloat
+              %li.b-menu__item
+                %a.b-menu__item__link.link_to_list{:href => "/ko/projects"}
+              %li.b-menu__item.qwert
+                .b-media.b-media--subhead
+                  .b-media__item
+                    .b-poster{:hsize => "64px"}
+                      .b-poster__frame{:style => "width:64px; height:48px"}
+                        %img.b-poster__pic{:alt => "Original", :src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/projects_pictures/pictures/2235/original.jpg?1413249626"}/
+              %li.b-menu__item
+                %a.b-menu__item__link.b-menu__item__link--selected_yes{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody", :tabindex => "1"}
+                  %span 프로젝트 소개
+              %li.b-menu__item
+                %a.b-menu__item__link{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody/process", :tabindex => "1"}
+                  %span
+                    업데이트 (
+                    %span.text-numeric 0
+                    )
+              %li.b-menu__item
+                %a.b-menu__item__link{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody/comment", :tabindex => "1"}
+                  %span
+                    댓글 (
+                    %span.text-numeric
+                      %span.js-channelCounter 6
+                    )
+              %li.b-menu__item
+                %a.b-menu__item__link{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody/backers", :tabindex => "1"}
+                  %span
+                    후원자 (
+                    %span.text-numeric 19
+                    )
+            %ul.b-menu.b-menu--subhead.rfloat
+              %li.b-menu__item
+                %a.b-menu__item__link.pledge_button{:href => "/ko/woody/pledge/step_01"} 프로젝트 밀어주기
+              %li.b-menu__item
+                %a.b-menu__item__link.link_to_top{:href => "#"}
+  / <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  #project-flag.b-flag.b-flag--has-folio.is_dent{:class => "[ ]"}
+    .container
+      .b-valign.centered.fitin{:style => "left:0px"}
+        .b-valign__inner
+          /[if IE 7]
+            <div class="b-valign__ie7_helper">
+          %h1.headline.type-xg.centered
+            %a{"data-title" => "WOODY :: tumblbug", :href => "/ko/woody"} WOODY
+          %p.deck.centered
+            %span.text-numeric> 10
+            월
+            = succeed "\u{c77c}" do
+              %span.text-numeric 17
+            = succeed "\u{c758}" do
+              %a.yoke.yoke--theme_creator{:href => "/ko/u/desiinearth"}
+                디자이너스[desiin_earth]
+          /[if IE 7]
+            </div>
+      %ul.b-menu.b-menu--condensed_yes.b-menu--has-pong_horizontal.send_to_subhead.lfloat{:class => "[ ]", "data-ui-component" => "project-main-nav"}
+        %li.b-menu__item
+          %a.b-menu__item__link.b-menu__item__link--selected_yes{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody", :tabindex => "1"}
+            %span 프로젝트 소개
+        %li.b-menu__item
+          %a.b-menu__item__link{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody/process", :tabindex => "1"}
+            %span
+              업데이트 (
+              %span.text-numeric 0
+              )
+        %li.b-menu__item
+          %a.b-menu__item__link{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody/comment", :tabindex => "1"}
+            %span
+              댓글 (
+              %span.text-numeric
+                %span.js-channelCounter 6
+              )
+        %li.b-menu__item
+          %a.b-menu__item__link{"data-indicator" => "true", "data-push" => "true", "data-remote" => "true", :href => "/ko/woody/backers", :tabindex => "1"}
+            %span
+              후원자 (
+              %span.text-numeric 19
+              )
+      %ul.b-menu.b-menu--condensed_yes.rfloat.footnote-size{:class => "[ ]", "data-ui-component" => "project-sub-nav"}
+        %li.b-menu__item
+          %a.b-menu__item__link.yoke{:href => "/ko/projects/product_design", :tabindex => "1"}
+            %i.b-fontello.b-fontello--tag{:style => "margin-right:3px;"}> 
+            제품디자인
+          %span.text-visible_no 분야 프로젝트
+        %li.b-menu__item
+          %span.b-menu__item__link
+            %i.b-fontello.b-fontello--location{:style => "margin-right:-0.2em;"} 
+            경기 수원시 장안구 정자동
+      / c-project_sub_nav
+  / b-flag
+  .b-content.b-content--clean
+    .container
+      #project_show_section_js.b-main{"data-show-modal" => ""}
+        .b-poster_board
+          %img.b-poster_board__image{:alt => "Original", :src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/projects_pictures/pictures/2235/original.jpg?1413249626"}/
+        %ul.b-menu.b-menu--space_yes.b-menu--sns.pad-horiz-half{:class => "[ ]", "data-url" => "https://tumblbug.com/ko/woody"}
+          %li.b-menu__item
+            %span.b-menu__item__link.b-menu__itme__link.of_share_count
+              %span.type-render 공유
+              %span.share_count.js-share_count 4
+          %li.b-menu__item
+            %a.b-button.b-button--theme_facebook.js-facebook_share{"data-url" => "https://tumblbug.com/ko/woody", :href => "#"}
+              %i.b-fontello.b-fontello--facebook 
+              페이스북 공유하기
+          %li.b-menu__item
+            %a.b-button.b-button--theme_twitter.js-twitter_share{"data-text" => "여러분 요즘 디자이너스[desiin_earth]의 WOODY 프로젝트 밀어주는게 유행이라던데요.", "data-url" => "https://tumblbug.com/ko/woody", "data-via" => "tumblbug", :href => "http://twitter.com/share"}
+              %i.b-fontello 
+               
+              트위터 알리기
+        .c-project_description.b-project_desc.js-project_desc
+          %hr/
+          %blockquote.pull-quote About desiin_earth
+          %p 디자이너스(desiin_earth)는 일상생활에서 쉽게 접할 수 있는 재료를 새로운 시각(New insight)으로 재해석해 새로운 조화(New harmony)를 추구하는 젊은 건축가 그룹입니다. 트랜드와 일반적 심미성에서 탈피하여, 새로운 경험과 디자인의 감성화를 제공하는 것이 디자이너스의 역할입니다. 이처럼 디자이너스(desiin_earth)는 모두가 자신의 삶을 디자인하는 디자이너스(designers)가 되었으면 하는 바람입니다
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42039/original/IMG_6210.jpg?1413346174"}/
+          %hr/
+          %blockquote.pull-quote WOODY
+          %p
+            WOODY[우디]는 다양한 사무용 또는 생활집기를 보관할 수 있도록 제작된 오거나이저로써, 쓰임새에 따라 파티션을 이용하여 필요에 맞게 배치하고 보관할 수 있습니다.
+            %br/
+            이와 함께, 내장된 자석으로 탈부착이 가능하도록 제작한 ADD PATRS들은 본인의 취향에 맞춰 선택하여 사용할 수 있습니다.
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/41999/original/IMG_5981.jpg?1413271246"}/
+          %hr/
+          %blockquote.pull-quote Specification
+          %ul
+            %li
+              %strong Organizer
+              (기본)
+              %br/
+              215L X 82W X 60H (mm)
+              %br/
+              자작나무 (THK.12/6.5mm) 네오디움자석
+              %br/
+              %br/
+               
+            %li
+              %strong> Additional Patrs
+               (옵션)
+          %ol
+            %li
+              %strong Candle
+              %br/
+              110L X 82W X 60H (mm)
+              %br/
+               Aluminium case, Soywax
+            %li
+              %strong Business card rack
+              %br/
+              110L X 82W X 60H (mm)
+              %br/
+               
+            %li
+              %strong I-Phone Louder
+              %br/
+              110L X 82W X 60H (mm)
+              %br/
+              Punched aluminium sheet
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/41989/original/woody_%EB%B3%B4%EC%A6%9D%EC%84%9C.jpg?1413268545"}/
+          %hr/
+          %p
+            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "346", :mozallowfullscreen => "", :src => "//player.vimeo.com/video/108971530", :title => "WOODY[우디] by desiin_earth", :webkitallowfullscreen => "", :width => "615"}
+          %p  
+          %blockquote.pull-quote Additional Parts
+          %ul
+            %li
+              %strong Candle
+              %br/
+              알루미늄 틴 케이스에 들어있는 소이왁스 캔들(베이비파우더향)은
+              = succeed "\u{c744}" do
+                %strong 나무가 주는 편안함 속에서 은은한 향
+              %br/
+              사용 후, 캔들 재사용 및
+              %strong> 컵홀더 
+              등의 용도로 사용할 수 있습니다.
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/41992/original/IMG_6102.jpg?1413269808"}/
+          %hr/
+          %ul
+            %li
+              %strong Business card rack
+              %br/
+              상단에는 자신의
+              = succeed "\u{c744}" do
+                %strong 명함과 사무용품
+              %strong 명함 및 쿠폰 등을 정리
+              할 수 있습니다.
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/41994/original/IMG_6190.jpg?1413269882"}/
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42008/original/IMG_6211.jpg?1413275596"}/
+          %hr/
+          %ul
+            %li
+              %strong I-Phone Louder
+              %br/
+              %strong 아이폰 전용 라우더
+              입니다. I-Phone 4, 4S, 5, 5S 버전이 사용가능하며 소리를 반사시킬 수 있는 음향 벽제와 같은 원리로 설계되어,
+              = succeed "\u{b418}\u{c5c8}\u{c2b5}\u{b2c8}\u{b2e4}." do
+                %strong 소리를 증폭 시킬 수 있도록 제작
+              %br/
+              = succeed "\u{d558}\u{c5ec}" do
+                %strong 캠핑 및 여가 시간 등에 휴대
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/41995/original/IMG_6158.jpg?1413269912"}/
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42007/original/IMG_6209.jpg?1413275317"}/
+          %hr/
+          %blockquote.pull-quote 후원 선물
+          %ul
+            %li
+               
+              %strong
+                30,000원
+                %br/
+                오거나이져 / 파티션 2개 추가 / 파우치
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42352/original/%EB%AC%B4%EC%A0%9C-1-02.png?1413553507"}/
+          %hr/
+          %ul
+            %li
+              %strong 40,000원
+              %br/
+              %strong
+                오거나이저 /
+                %u ADD PARTS 중 택1
+                 / 파티션 2개 추가 / 파우치
+              %br/
+              %br/
+              %u
+                %strong
+                  후원과 동시에 골라주세요. :)
+                  %br/
+                  (CANDLE SET / CARD RACK SET / LOUDER SET)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42351/original/%EB%AC%B4%EC%A0%9C-1-03.png?1413553471"}/
+          %hr/
+          %ul
+            %li
+              %strong
+                50,000원
+                %br/
+                오거나이저 /
+                %u ADD PARTS 중 택2
+                \/ 파티션 2개 추가 / 파우치
+                %br/
+                %br/
+                %u
+                  ADD PARTS의 선택은 개별적으로 메일이 전달됩니다.
+                  %br/
+                  이때, 선택하여 답장주시면 됩니다. :)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42350/original/%EB%AC%B4%EC%A0%9C-1-03.png?1413553453"}/
+          %hr/
+          %ul
+            %li
+              %strong
+                60,000원
+                %br/
+                오거나이져 /
+                = succeed "\u{a0}/" do
+                  %u ADD PARTS 모두 (3종류)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42349/original/%EB%AC%B4%EC%A0%9C-1-03.png?1413553423"}/
+          %hr/
+          %ul
+            %li
+              %strong
+                70,000원
+                %br/
+                오거나이져 2개 /
+                = succeed "\u{a0}/" do
+                  %u ADD PARTS 중 택2
+                %br/
+                %br/
+                %u
+                  ADD PARTS의 선택은 개별적으로 메일이 전달됩니다.
+                  %br/
+                  이때, 선택하여 답장주시면 됩니다. :)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42348/original/%EB%AC%B4%EC%A0%9C-1-06.png?1413553407"}/
+          %hr/
+          %ul
+            %li
+              %strong
+                90,000원
+                %br/
+                오거나이져 2개 /
+                %u ADD PARTS 중 택4
+                \/ 파우치
+                %br/
+                %br/
+                %u
+                  ADD PARTS의 선택은 개별적으로 메일이 전달됩니다.
+                  %br/
+                  이때, 선택하여 답장주시면 됩니다. :)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42873/original/%EB%AC%B4%EC%A0%9C-1-06.png?1414072985"}/
+          %hr/
+          %ul
+            %li
+              %strong
+                100,000원
+                %br/
+                %br/
+                오거나이져 3개 / ADD PARTS 모두 (3종류) / 파우치
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42347/original/%EB%AC%B4%EC%A0%9C-1-07.png?1413553387"}/
+          %hr/
+          %ul
+            %li
+              %strong 디자이너스 파우치
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42345/original/%EC%88%98%EC%A0%95.jpg?1413552210"}/
+          %hr/
+          %ul
+            %li
+              %strong 야외에서 파티하며 음악들으면 어떨까요? :)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42343/original/P20141004_153345000_E18DA1BF-04B2-4C65-BB40-642345BE9AD4.JPG?1413551439"}/
+          %ul
+            %li
+              %strong 카페에서 쿠폰을 이렇게 모아두면 어떨까요? :)
+          %p
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42880/original/1.jpg?1414074180", :style => "font-size:15px; line-height:26.25px"}/
+          %hr/
+          %blockquote.pull-quote "WOODY" 가  텀블벅을 찾은 이유는?
+          %p
+             
+            %img{:src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/project_blog_pictures/photos/photos/42010/original/IMG_6210.jpg?1413275640"}/
+          %ul
+            %li
+              디자이너스(desiin_earth)는 트랜드와 일반적 심미성에서 탈피하여, 새로운 경험과 디자인의 감성화를 제공하는 젊은 건축가 그룹입니다.
+              %br/
+              2014년 2월 최초 조명 제품을 시작으로 캔들 및 디퓨져등 유니크한 제품으로 단기간 적지않은 사랑을 받아 영광스럽고, 모두에게 감사하는 마음으로 일에 매진하고 있습니다. 그런 행복속에서 아이디어를 실현시키는데 몇몇 장애요소가 있었습니다.
+              %br/
+              그 중, 가장 큰 장애 요소는 자작나무 합판의 효율적 활용입니다.
+              %br/
+              초기 CNC 라우터를 통하여 제작되는 'WOODY'는, 하나의 제작 비용은 많이 들지만, 합판 한장에 들어가는 최적의 
+              %strong 수량을 확보하여 제작한다면 나무의 로스를 줄이면서 비용을 절감할 수 있습니다.
+              %br/
+              이에 디자이너스는
+              %strong>  
+              텀블벅에서
+              = succeed "\u{b97c}" do
+                %strong 'WOODY'
+              %strong 생산 비용이 절약되는 수량을 확보하여 아이디어를 실현
+              시키고자 합니다.
+            %li
+              또한, CNC라우터를 통한 자작나무 커팅 이후의 모든 작업은 1
+              %strong> 00% HANDMADE
+              입니다. 후원해 주시는 후원금은 HANDMADE 제작이 보다 더 원활히 이루어 질 수 있도록 필요한 공구들을 구입하는 데에 쓰일 것입니다.
+            %li
+              마지막으로 우리가 아닌, 디자이너스의 모토
+              %strong " 모두가 자신의 삶을 디자인하는 디자이너스(designers)가 되었으면 하는 바람"
+              를 'WOODY'를 통해 실현시키고자 합니다.
+          %blockquote
+            %p
+              "we are total designers,
+              = succeed "gn" do
+                %strong desi
+              %strong in
+              our
+              = succeed "\"" do
+                %strong earth
+          %hr/
+          %p 디자이너스(desiin_earth)와 친해지는 방법
+          %ul
+            %li
+              %strong
+                첫번째 
+                %a{:href => "http://www.desiinearth.com"} www.desiinearth.com
+            %li
+              %strong
+                두번째 
+                %a{:href => "http://www.facebook.com/desiinearth"} www.facebook.com/desiinearth
+            %li
+              %strong
+                세번째
+                %a{:href => "http://blog.naver.com/desiinearth"} blog.naver.com/desiinearth
+              %br/
+               
+            %li
+              %strong 디자이너스는 세상 어디에도 없는 100% HANDMADE의 유니크합과 합리적이고 실용적인 디자인으로 보답하겠습니다. 많은 관심과 후원 부탁드리겠습니다. 감사합니다 :)
+              %strong                                                                      
+          %p  
+        / c-project_description
+        %script{:src => "/assets/social_share-265c15d6017fb495c8006a810b713de4.js", :type => "text/javascript"}
+      /
+        mode: :basic, :slim, :slimmer, :slimmest
+        position: :right(default), :left
+        custom_class: 기타 사용자 정의 클래스 추가 가능
+        
+        b-sidebar__inner는 ie8 미만 버전에서만 mode를 대체하여 반응한다.
+      .b-sidebar{:role => "complementary"}
+        /[if IE 7]
+          <div class="b-sidebar__inner">
+        %dl.b-campaign_stats
+          .b-campaign_stats__mobile_transformer
+            %dt.b-campaign_stats__title
+              %span.type-render 목표
+              %span.text-numeric
+                2,500,000
+              %span.type-render 원 중
+              %span.text-numeric
+                48%
+              %span.u-not_for_mobile.u-not_for_tablet
+                %span.type-render 모임
+            %dd.b-campaign_stats__value
+              %span.text-numeric-old
+                1,210,000
+                %span.b-campaign_stats__value__unit.b-campaign_stats__value__unit--currency 원
+          / 목표금액 b-campaign_stats__mobile_transformer
+          .b-campaign_stats__mobile_transformer
+            %dt.b-campaign_stats__title
+              %span.type-render 남은 시간
+            %dd.b-campaign_stats__value
+              %span.text-numeric-old 18
+              %span.b-campaign_stats__value__unit 일
+          / 남은시간 b-campaign_stats__mobile_transformer
+          .b-campaign_stats__mobile_transformer
+            %dt.b-campaign_stats__title
+              %span.type-render 후원자
+            %dd.b-campaign_stats__value
+              %span.text-numeric-old 19
+              %strong.b-campaign_stats__value__unit 명
+          / 후원자 b-campaign_stats__mobile_transformer
+        / b-campaign_stats
+        .b-mobile_wrap
+          %a#pledge_button.c-pledge_button.js-pledgeButton{:href => "/ko/woody/pledge/step_01", :tabindex => "2"}
+            %span.c-pledge_button__label.type-render 프로젝트 밀어주기
+            %span.c-pledge_button__help
+              최소금액은
+              = succeed "\u{c6d0}\u{c785}\u{b2c8}\u{b2e4}." do
+                %span.text-numeric 1,000
+        %ul.c-select_list.c-select_list--mobile.u-for_mobile
+          %li.c-select_list__item
+            %a.c-select_list__item__link{:href => "/ko/woody/process"}
+              진행소식
+              %span.text-numeric.footnote-size (0)
+          %li.c-select_list__item
+            %a.c-select_list__item__link{:href => "/ko/woody/comment"}
+              댓글
+              %span.text-numeric.footnote-size (6)
+          %li.c-select_list__item
+            %a.c-select_list__item__link{:href => "/ko/woody/backers"}
+              후원자
+              %span.text-numeric.footnote-size (19)
+        %p.b-pledge_blurb.js-pledge_blurb
+          결제는
+          = succeed "\u{c6d4}" do
+            %span.text-numeric 11
+          = succeed "\u{c77c}" do
+            %span.text-numeric 10
+          = succeed "\u{c6d0}\u{c774}" do
+            %span.text-numeric 2,500,000
+        .sticky-frame
+          %div{"data-bottom-offset" => "39", "data-remote-body" => ".b-sidebar", "data-scroll" => "sticky", "data-top-offset" => "106.5"}
+            .b-panel.box{"data-ui-component" => "profile-card"}
+              .b-panel__head
+              .b-panel__body.no-pad
+                %ul.b-profile_card
+                  %h5.b-profile_card__title.type-render 프로젝트 크리에이터
+                  .b-profile_card__identity
+                    .b-avatar.lfloat{:style => "width: 62px"}
+                      .b-avatar__frame.b-avatar__frame--bordered{:style => "width:62px; height:62px"}
+                        %img.b-avatar__pic{:alt => "Medium", :src => "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/pictures/56021/medium.jpg?1413345034"}/
+                    .b-profile_card__name_area
+                      .b-profile_card__name_area__middle
+                        .b-profile_card__name_area__inner
+                          %h5.b-profile_card__fullname
+                            %a{:href => "/ko/u/desiinearth"} 디자이너스[desiin_earth]
+                          %p.b-profile_card__location
+                            %a{:href => "#"}
+                              %i.b-fontello.b-fontello--location 
+                              수원시 장안구 정자동
+                  .u-clear
+                  /
+                    <li class="b-profile_card__sns is_on" title="디자이너스[desiin_earth]님의 페이스북 페이지를 보실 수 있습니다.">
+                    <i class="b-fontello b-fontello--facebook "></i>
+                    페이스북 연동 안됨
+                    </li>
+                  %li.b-profile_card__sns
+                    %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                    다른 프로젝트를 밀어준 적 없음
+                  %li.b-profile_card__contacts
+                    %a.b-profile_card__contact_button.js-newMessage.creator_directmessage_btn_js{:href => "/ko/directmessages/new_modal?receiver_id=56021&redirection=%2Fko%2Fwoody", :tabindex => "2"} 문의하기
+                    %a.b-profile_card__contact_button{"data-modal" => "true", "data-modal-hsize" => "420", :href => "/ko/projects/2235/creator_profile_card"} 자세히 보기
+                  .u-clear
+                / b-profile_card
+            %ul.i-presents
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=30000&reward_id=11760"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 30,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 0
+                    %p.small-type.text-strong.pad-top-quarter
+                      Woody 오거나이져 단품 [오거나이져 + 기본파티션]
+                      + 파티션2개 추가 + 파우치 입니다. :)
+                      "나의 삶 디자인하기"
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=40000&reward_id=11761"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 40,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 2
+                    %p.small-type.text-strong.pad-top-quarter
+                      ■CANDLE SET■    Woody 오거나이져 단품 [오거나이져 + 기본파티션] + [CANDLE] + 파티션2개 추가  + 파우치 입니다. :)
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=40000&reward_id=11766"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 40,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 4
+                    %p.small-type.text-strong.pad-top-quarter
+                      ■CARD RACK SET■    Woody 오거나이져 단품 [오거나이져 + 기본파티션] + [CARD RACK] + 파티션2개 추가 + 파우치 입니다 :)
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=40000&reward_id=11767"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 40,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 0
+                    %p.small-type.text-strong.pad-top-quarter
+                      ■LOUDER SET■    Woody 오거나이져 단품 [오거나이져 + 기본파티션] + [LOUDER] + 파티션2개 추가 + 파우치 입니다. :)
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=50000&reward_id=11762"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 50,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 3
+                    %p.small-type.text-strong.pad-top-quarter
+                      Woody 오거나이져 단품[오거나이져 + 기본파티션] + [ADD PARTS 중 택2] + 파티션2개 추가 + 파우치 입니다. :)  ★ADD PARTS 선택은 개별적으로 메일이 전달됩니다. 수신 후 답장주시면 됩니다.★
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=60000&reward_id=11763"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 60,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 0
+                    %p.small-type.text-strong.pad-top-quarter
+                      Woody 오거나이져 단품 [오거나이져 + 기본파티션] + [ADD PARTS 모두] + 파티션2개 추가 + 파우치 입니다. :)
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=70000&reward_id=11764"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 70,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 6
+                    %p.small-type.text-strong.pad-top-quarter
+                      Woody 오거나이져 단품 [오거나이져 + 기본파티션] 2개 + [ADD PARTS 중 택2] + 파우치 입니다. :)  ★ADD PARTS 선택은 개별적으로 메일이 전달됩니다. 수신 후 답장주시면 됩니다.★
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=90000&reward_id=11965"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 90,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 0
+                    %p.small-type.text-strong.pad-top-quarter
+                      Woody 오거나이져 단품 [오거나이져 + 기본파티션] 2개 + [ADD PARTS 중 택4] + 파우치 입니다. :)  ★ADD PARTS 선택은 개별적으로 메일이 전달됩니다. 수신 후 답장주시면 됩니다.★
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+              %li.b-panel.b-panel--theme_board.b-panel--rounded_yes.box.b-panel--selectable_yes{"data-selectable" => "true", "data-ui-component" => "present-card"}
+                %a{:href => "/ko/woody/pledge/step_01?money=100000&reward_id=11765"}
+                  .b-panel__head
+                    %h3.b-panel__title.large-type
+                      %span.text-numeric> 100,000
+                      원 이상 밀어주기
+                  / .b-panel__head
+                  .b-panel__body.typeset--half
+                    .b-meta
+                      %span.b-meta__title.footnote-size.text-strong
+                        %span.text-color-primary
+                          %i.b-fontello.b-fontello--pledged.b-fontello--pledged 
+                        = succeed "\u{ba85}\u{c774}" do
+                          %span.text-numeric 4
+                    %p.small-type.text-strong.pad-top-quarter
+                      Woody 오거나이져 단품 [오거나이져 + 기본파티션] 3개 + [ADD PARTS 모두] + 파우치 입니다. :)
+                    .b-panel__foot
+                      %span.script-size
+                        예상 실행시기:
+                        = succeed "\u{b144}" do
+                          %span.text-numeric 2014
+                        = succeed "\u{c6d4}" do
+                          %span.text-numeric 12
+                        = succeed "\u{c77c}" do
+                          %span.text-numeric 1
+                  / .b-panel__body
+              / .b-panel
+            %ul.b-meta.pad-horiz.pad-top-quarter.type-xs{"data-ui-component" => "project-footer"}
+              %li.b-meta__item
+                %a.yoke.text-muted{:href => "/ko/terms_of_use"} 이용약관
+              %li.b-meta__item
+                %a.yoke.text-muted{:href => "/ko/privacy"} 개인정보 보호정책
+              %li.b-meta__item
+                %a.yoke.text-muted{:href => "mailto:contact@tumblbug.com"} 문의하기
+        /[if IE 7]
+          </div>
+      / b-sidebar
+  :javascript
+    $(document).ready(function(e){
+      Tumblbug.views.project_introduction_view({
+        url: "https://tumblbug.com/ko/woody",
+        image_url: "https://s3-ap-northeast-1.amazonaws.com/tumblbug-production/projects_pictures/pictures/2235/original.jpg?1413249626",
+        project: {
+          id: 2235, 
+          title: 'WOODY',
+          permalink: 'woody'
+        }
+      });
+      
+    });
+  / <div class="b-banner b-banner--mobile_footer is_stuck_to_bottom">
+  / <a href="" id="mobile-pledge-button" class="b-button">밀어주기</a>
+  / </div>
+  :javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21869674-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+  :javascript
+    $(document).ready(function(){
+      Tumblbug.views.global_view();
+      Tumblbug.views.project_history_view();
+      if (Tumblbug.utils.mobile_check()){
+        Tumblbug.views.project_mobile_view();
+      }
+    });
+  %script{:src => "/assets/jwplayer/jwplayer.html5.js"}
+  .overlay-search{:style => "display: none;"}
+  .b-panel.b-panel--theme_board.b-panel--search.js-searchResultPanel{:style => "display: none;"}
+    .b-panel__head
+      .wrap
+        .fullwidth
+          %span.b-panel__title
+            %span.js-queryString.text-numeric{:style => "color: #9abafe;"}>
+            에 대한 검색 결과
+            %span.text-numeric
+              (
+              %span.js-searchResultSize 0
+              )
+            %a.js-resultShutter.rfloat.text-white{:href => "#"}
+              %i.b-fontello.b-fontello--cancel.b-fontello--cancel.no-margin 
+    .b-panel__body
+      .wrap
+        %a.b-scope__to-left.is_hidden{:href => "#"} 이전
+        %a.b-scope__to-right.is_hidden{:href => "#"} 다음
+        .b-scope.fitin
+          .b-scope__slide
+  %ul.b-buttons-split__menu.is_hidden{"aria-hidden" => "true", :role => "listbox"}
+  %script{:src => "https://js-agent.newrelic.com/nr-476.min.js"}
+  %script{:src => "//browser-update.org/update.js", :type => "text/javascript"}
+  %script{:src => "https://beacon-1.newrelic.com/1/877a8005ff?a=3971240&pl=1414117783707&v=476.c73f3a6&to=dllfFxNcD1tXEB9IS1pcVAAVQExEWg1H&ap=198&be=337&fe=3942&dc=510&f=%5B%5D&perf=%7B%22timing%22:%7B%22of%22:1414117783707,%22n%22:0,%22u%22:225,%22ue%22:226,%22dl%22:238,%22di%22:753,%22ds%22:771,%22de%22:1091,%22dc%22:4279,%22l%22:4279,%22le%22:4348,%22f%22:0,%22dn%22:0,%22dne%22:0,%22c%22:0,%22ce%22:0,%22rq%22:3,%22rp%22:223,%22rpe%22:226%7D,%22navigation%22:%7B%7D%7D&jsonp=NREUM.setToken", :type => "text/javascript"}

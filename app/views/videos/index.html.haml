@@ -1,0 +1,32 @@
+.container
+  .main_content_slide
+    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+      %ol.carousel-indicators
+        - @main_videos.each_with_index do |main_video, index|
+          %li{class: index == 0 ? 'active' : '', "data-slide-to" => index, "data-target" => "#carousel-example-generic"}
+      .carousel-inner
+        - @main_videos.each_with_index do |main_video, index|
+          .item{ class: index == 0 ? 'active' : '' }
+            = raw main_video.iframe_html
+      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+        %span &lt;
+      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+        %span &gt;
+
+  .content-list-box
+    .content-list-box__title
+      최신 비디오
+      = link_to '리믹스 업로드', [:new, :video], class: 'btn btn-default'
+
+    .content-list-box__list.clearfix
+      - @videos.each_slice(4) do |videos|
+        %ul.unstyled
+          - videos.each do |video|
+            %li
+              = link_to video do
+                = image_tag video.thumbnail_url
+
+    .clearfix
+
+    .content-list-box__paginate.text-center
+      = paginate @videos

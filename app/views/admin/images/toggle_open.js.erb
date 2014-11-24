@@ -1,0 +1,5 @@
+if (<%= @image.is_open %> == true){
+  $('.is_open_td#image_<%= @image.id %>').find('p').html('<p>true</p>');
+} else if (<%= @image.is_open %> == false){
+  $('.is_open_td#image_<%= @image.id %>').find('p').html('<p>false</p>');
+}

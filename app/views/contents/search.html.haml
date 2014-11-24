@@ -1,0 +1,24 @@
+.container
+  .content-list-box
+    .content-list-box__title
+      ="'#{params[:q]}' 에 대한 검색 결과입니다."
+    .content-list-box__list.clearfix
+      - @contents.each_slice(4) do |contents|
+        %ul.unstyled
+          - contents.each do |content|
+            %li
+              =link_to content do
+                .thumb{ style: "background-image: url(#{content.thumbnail_url})" }
+              .pull-right
+                %p= content.type
+    .content-search.text-center
+      = form_tag(search_contents_path, method: "get") do
+        - content_copyright = Content.pluck(:copyright).uniq
+        .search-wrapper.iblc
+          = select_tag 'copyright', options_for_select(content_copyright, (params[:copyright] rescue '')), class: "selectpicker iblc", :prompt => "저작권을 선택해 주세요"
+          = text_field_tag(:q, value=nil, options = {:value => params[:q], placeholder: '검색어', class: 'form-control content-search__form iblc'})
+          = submit_tag "검색", class: 'btn btn-purple search-bar__submit_btn iblc'
+
+    .content-list-box__paginate.text-center
+      = paginate @contents if @contents.present?
+

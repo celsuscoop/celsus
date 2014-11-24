@@ -1,0 +1,143 @@
+/* thumb */
+.thumb {
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-background-repeat: no-repeat;
+  -moz-background-repeat: no-repeat;
+  background-position: center center;
+}
+.main_content_slide{
+  .item {
+    width: 1006px;
+    height: 400px;
+  }
+  .carousel-control {
+    padding-top: 160px;
+    span {
+      font-size: 50px;
+    }
+  }
+}
+.content-list-box {
+  margin-top: 30px;
+  .content-list-box__title {
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid #000000;
+    margin: 20px 0;
+    padding: 10px 0;
+    color: #413f42;
+    position: relative;
+    .btn {
+      position: absolute;
+      right: 0;
+      top: -15px;
+      padding: 10px 20px;
+      background-color: #e3519d;
+      border-radius: 50px;
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      font-color: #fff;
+      color: #fff;
+      font-size: 14px;
+      margin: 10px 0;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+    }
+  }
+  .content-list-box__list{
+    li:first-child {
+      margin-left: 0px;
+    }
+    li {
+      float: left;
+      margin-left: 15px;
+      margin-bottom: 20px;
+      width: 240px;
+      height: 135px;
+    }
+    li img {
+      width: 240px;
+      height: 100%;
+    }
+    .thumb{
+      height: 100%;
+    }
+    p {
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+}
+
+.content-list-box__paginate {
+  width: 100%;
+  margin-top: 30px;
+}
+.pagination {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.pagination > li {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
+.pagination > .next > span, .pagination > .next > span:hover, .pagination > .next > span:focus, .pagination > .next > a, .pagination > .next > a:hover, .pagination > .next > a:focus,
+.pagination > .prev > span, .pagination > .prev > span:hover, .pagination > .prev > span:focus, .pagination > .prev > a, .pagination > .prev > a:hover, .pagination > .prev > a:focus {
+  background-color: #bc1a6f;
+  color: #fff;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus,
+.pagination > .last > span, .pagination > .last > span:hover, .pagination > .last > span:focus, .pagination > .last > a, .pagination > .last > a:hover, .pagination > .last > a:focus,
+.pagination > .first > span, .pagination > .first > span:hover, .pagination > .first > span:focus, .pagination > .first > a, .pagination > .first > a:hover, .pagination > .first > a:focus {
+  display: none;
+}
+.pagination > li > a, .pagination > li > span {
+  background-color: transparent;
+  font-weight: bold;
+  color: #666;
+  border: none;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  color: #bc1a6f;
+  background-color: transparent;
+}
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: #bc1a6f;
+  background-color: transparent;
+}
+
+.content-search {
+  margin-top: 30px;
+  .search-wrapper{
+    width: 60%;
+    .bootstrap-select {
+      .btn {
+        width: 100% !important;
+      }
+    }
+    .form-control{
+      width: 50%;
+      vertical-align: bottom;
+    }
+    .search-bar__submit_btn{
+      color: #FFF;
+    }
+  }
+}
+.admin-search-wrapper {
+  .row {
+    margin-bottom: 5px;
+  }
+  .col-xs-1, .col-xs-2 {
+    line-height: 2.5em;
+  }
+}

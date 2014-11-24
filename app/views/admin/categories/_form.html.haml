@@ -1,0 +1,11 @@
+%li.list-group-item
+  = form_for [:admin, category], html: { class: 'form-inline' } do |f|
+
+    .form-group
+      = f.text_field :name, placeholder: 'name', class: 'form-control'
+
+    - if category.new_record?
+      = f.submit '추가', class: 'btn btn-default'
+    - else
+      = f.submit '수정', class: 'btn btn-default'
+      = link_to '삭제', [:admin, category], method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'btn btn-default'

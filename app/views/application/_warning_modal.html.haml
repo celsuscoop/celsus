@@ -1,0 +1,12 @@
+#warning.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title 신고하기
+      .modal-body
+        = bootstrap_form_for @warning do |f|
+          = hidden_field_tag "warning[content_id]", @content.id
+          = f.text_area :cause, :rows => "5" , class: 'form-control'
+          .text-center
+            = f.submit

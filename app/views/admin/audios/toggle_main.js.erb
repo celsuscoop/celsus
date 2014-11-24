@@ -1,0 +1,6 @@
+console.log(<%= @audio.main %>);
+if (<%= @audio.main %> == true){
+  $('.main_td#audio_<%= @audio.id %>').find('p').html('<p>true</p>');
+} else if (<%= @audio.main %> == false){
+  $('.main_td#audio_<%= @audio.id %>').find('p').html('<p>false</p>');
+}

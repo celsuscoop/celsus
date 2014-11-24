@@ -1,0 +1,26 @@
+.container
+  %section
+    .page-header
+      %h2 Celsus 블로그
+
+    %table.table
+      %thead
+        %tr
+          %th
+            %label 카테고리
+          %th
+            %label 제목
+          %th
+            %label 작성일
+          %th
+      %tbody
+        - @posts.each do |post|
+          %tr
+            %td= post.category.name if post.category
+            %td= link_to post.title, [:admin, post]
+            %td= post.created_at.strftime("%Y/%m/%d")
+    .paginate
+      = paginate @posts
+
+    = link_to "작성하기", [:new, :admin, :post], class: 'btn btn-default'
+

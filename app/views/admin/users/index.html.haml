@@ -1,0 +1,24 @@
+%section
+  .page-header
+    %h2 회원정보
+
+%table.table.table
+  %thead
+    %tr
+      %th
+        %label 이름
+      %th
+        %label 이메일
+      %th
+        %label 권한
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user.name
+        %td
+          = user.email
+        %td
+          = user.role
+        %td
+          = link_to '수정', [:edit, :admin, user], class: 'btn btn-default btn-xs' if can? :update,user

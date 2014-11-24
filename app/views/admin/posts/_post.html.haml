@@ -1,0 +1,5 @@
+= bootstrap_form_for [:admin, @post] do |f|
+  = f.collection_select :category_id, @categories, :id, :name, include_blank: true
+  = f.text_field :title
+  = f.text_area :body, rows: 10, class: 'redactor'
+  = f.submit

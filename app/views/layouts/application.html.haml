@@ -1,0 +1,27 @@
+!!!
+%html.fuelux
+  %head
+    %meta{charset: "utf-8"}
+    %title Celsus
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
+    %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge"}
+    %meta{"name" => "format-detection", "content" => "telephone=no"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Noto+Sans", :rel => "stylesheet", :type => "text/css"}/
+    /[if lt IE 9]
+    //  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = yield :facebook_meta
+
+  %body{ :class => page_class + ( user_signed_in? ? ' user_signed_in' : '' ) }
+    - if flash[:notice]
+      .alert.alert-success.main_notice
+        = flash[:notice]
+    .header-wrapper{style: "position: relative"}
+      = render 'header'
+    .main
+      = yield
+    = render 'ga'
+    = render 'footer'

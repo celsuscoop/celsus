@@ -1,0 +1,111 @@
+.background
+- content_for :facebook_meta do
+  = tag :meta, property: "og:type", content: "website"
+  = tag :meta, property: "og:url", content: image_url(@image)
+  = tag :meta, property: "og:title", content: "셀수스 - #{@image.title}"
+  = tag :meta, property: "og:description", content: (@image.body)
+.container
+  %section
+    .content-main
+      .row
+        .col-sm-7
+          = image_tag @image.middle_size_url
+          .content-main__sns.text-left
+            %a{"data-via" => "twitterdev", :href => "https://twitter.com/share"}
+              = image_tag 'btn-tw.png', alt: "트위터버튼"
+            %a{:href => "http://www.facebook.com/sharer.php?u=#{image_url(@image)}"}
+              = image_tag 'btn-fb.png', alt: "페이스북버튼"
+            %a{:href => "https://plus.google.com/share?url=#{image_url(@image)}"}
+              = image_tag 'btn-google.png', alt: "구글버튼"
+            .fb-like{"data-action" => "like", "data-href" => image_url(@image), "data-layout" => "button", "data-share" => "false", "data-show-faces" => "false"}
+        .col-sm-5
+          .content-main__spec.content-spec
+            .content-spec__title
+              = image_tag 'icon-video.png'
+              %h3.iblc 제목 : #{@image.title}
+            %p.content-spec__text
+              내용 : #{@image.body}
+            %p.content-spec__text
+              = @image.link
+            %p.content-spec__text
+              - if @image.owner_name
+                권리자 : #{@image.owner_name}
+                (
+                = link_to @image.check_owner_url, @image.check_owner_url
+                )
+            - if current_user
+              = link_to '#', class: 'content-spec__link', "data-target" => "#warning", "data-toggle" => "modal" do
+                저작권 신고하기
+                = image_tag 'icon-button.png'
+            - else
+              = link_to '#', data: { confirm: '로그인 후 이용가능 합니다.'}, class: 'content-spec__link' do
+                저작권 신고하기
+                = image_tag 'icon-button.png'
+            .content-spec__copyright
+              - if @image.extra_copyright
+                = link_to (@image.copy_right_image_url), @image.copy_right_licence_info_url
+              - else
+                = link_to image_tag(@image.copy_right_image_url), @image.copy_right_licence_info_url
+
+          .content-main__download.content-download
+            .content-download__button.text-center
+              %a{:href => image_download_path(@image), :role => "button", :class => "iblc"} 다운로드
+    .content
+      .content-box
+        %h4.content-box__title
+          ="키워드"
+        %p.content-box__description
+          - if @image.tags
+            - @image.tags.each do |tag|
+              %span.label.label-default
+                = link_to tag.name, [:tags, :contents, tag: tag.name]
+
+      - if @friendly_images.present?
+        .content-box
+          %h4.content-box__title
+            ="관련 이미지"
+          .content-box__imglist.content-imglist
+            .img-list.als-container
+              %span.als-prev
+                = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+              .als-viewport
+                %ul.als-wrapper
+                  - @friendly_images.each do |fr_image|
+                    %li.als-item
+                      = link_to image_tag(fr_image.thumbnail_url), fr_image
+              %span.als-next
+                = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+            .clearfix
+      - if @author_images.present?
+        .content-box
+          %h4.content-box__title
+            ="작가의 최신 이미지"
+          .content-box__imglist.content-imglist
+            .img-list.als-container
+              %span.als-prev
+                = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+              .als-viewport
+                %ul.als-wrapper
+                  - @author_images.each do |author_image|
+                    %li.als-item
+                      = link_to image_tag(author_image.thumbnail_url), author_image
+              %span.als-next
+                = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+            .clearfix
+  %section
+    .fb-comments{"data-colorscheme" => "light", "data-href" => image_url(@image), "data-numposts" => "5", "width" => "1000"}
+
+  .text-center
+    = link_to '목록으로', [:images], class: 'btn btn-default'
+
+  = render 'warning_modal'
+  = render 'social_share_script'
+
+  :javascript
+    $(function() {
+      $(".content-download").on("change", "input.content-size__radio", function(e) {
+        var $wrapper = $(e.delegateTarget);
+        var url = $(this).parent("li.content-size").data("download-url");
+        $wrapper.find('.content-download__button a').attr("href", url);
+      });
+    });

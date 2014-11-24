@@ -1,0 +1,11 @@
+.container
+  %section
+    .page-header
+      %h2= @post.title
+
+  = raw @post.body
+
+  .post-btn
+    = link_to '목록으로', [:admin, :posts], class: 'btn btn-default'
+    = link_to '수정하기', [:edit, :admin, @post], class: 'btn btn-default'
+    = link_to '삭제하기', [:admin, @post], method: 'delete', data: { confirm: '정말 삭제하시겠습니까?' }, class: 'btn btn-default'

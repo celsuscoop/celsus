@@ -1,0 +1,5 @@
+if (<%= @audio.is_open %> == true){
+  $('.is_open_td#audio_<%= @audio.id %>').find('p').html('<p>true</p>');
+} else if (<%= @audio.is_open %> == false){
+  $('.is_open_td#audio_<%= @audio.id %>').find('p').html('<p>false</p>');
+}

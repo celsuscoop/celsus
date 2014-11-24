@@ -1,0 +1,8 @@
+.container
+  %section
+    .page-header
+      %h2 테스트 로그인
+    %p= link_to "최고관리자로 로그인", page_change_user_session_path(User.where(name: 'su').first), method: 'post', class: 'btn btn-default'
+    %p= link_to "관리자로 로그인", page_change_user_session_path(User.where(name: 'admin').first), method: 'post', class: 'btn btn-default'
+    %p= link_to "컨트리뷰터로 로그인", page_change_user_session_path(User.where(name: 'contributor').first), method: 'post', class: 'btn btn-default'
+    %p= link_to "일반회원 로그인", page_change_user_session_path(User.where(name: 'guest').first), method: 'post', class: 'btn btn-default'

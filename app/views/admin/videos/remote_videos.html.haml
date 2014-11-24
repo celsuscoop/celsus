@@ -1,0 +1,45 @@
+
+- if @videos.present?
+  %table.table
+    %tr
+      %th= check_box_tag :check_all
+      %th 비디오
+      %th 제목
+      %th 저작권
+      %th
+    - @videos.each do |video|
+      %tr
+        %td= check_box_tag "video[id][]", video.link.split('/').last, false, class: "video_row", id: nil
+        %td= image_tag video.thumbnail_url, style: "width: 200px;"
+        %td= video.name
+        %td= video.license_ko
+        %td= link_to '가져오기', fetch_remote_video_admin_videos_path(remote_video_uri: video.uri), class: 'btn btn-default btn-sm', method: 'post' if video.license.present?
+    = link_to '선택가져오기', fetch_selected_remote_videos_admin_videos_path, class: 'btn btn-default btn-sm fetch_videos'
+
+- else
+  = '새로운 비디오가 없습니다.'
+
+:javascript
+  $(function() {
+    $("#check_all").click(function() {
+      var is_checked = $(this).is(":checked");
+      $(".video_row").prop('checked', is_checked);
+    });
+
+    $(".fetch_videos").click(function(e) {
+      e.preventDefault();
+      var selected_video_ids = [];
+      $.each( $('.video_row:checked'), function(i, obj) {
+        selected_video_ids.push($(obj).val());
+      });
+      var url = $(this).attr("href");
+      var csrf_token = $('meta[name=csrf-token]').attr('content');
+      var csrf_param = $('meta[name=csrf-param]').attr('content');
+      var params = {};
+      params[csrf_param] = csrf_token;
+      params['video_ids']  = selected_video_ids;
+      $.post( url, params, function(data) {
+        window.location = data.redirect_url;
+      });
+    });
+  });

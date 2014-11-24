@@ -1,0 +1,6 @@
+= form_for [:admin, @user] do |f|
+  .form-group
+    = f.label :role
+    = f.select :role, User::ROLE_EDIT, {}, class: 'form-control half state'
+  .text-center
+    = f.submit "등록하기", class: 'btn btn-purple'

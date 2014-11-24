@@ -1,0 +1,5 @@
+if (<%= @video.main %> == true){
+  $('.main_td#video_<%= @video.id %>').find('p').html('<p>true</p>');
+} else if (<%= @video.main %> == false){
+  $('.main_td#video_<%= @video.id %>').find('p').html('<p>false</p>');
+}

@@ -1,0 +1,35 @@
+.container
+  .main_content_slide
+    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+      %ol.carousel-indicators
+        - @main_audios.each_with_index do |main_audio, index|
+          %li{class: index == 0 ? 'active' : '', "data-slide-to" => index, "data-target" => "#carousel-example-generic"}
+      .carousel-inner
+        - @main_audios.each_with_index do |main_audio, index|
+          .item{ class: index == 0 ? 'active' : '' }
+            = raw main_audio.iframe_html
+      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+        %span &lt;
+      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+        %span &gt;
+
+  .content-list-box
+    .content-list-box__title
+      최신 오디오
+      .pull-right
+        = link_to '리믹스 업로드', [:new, :audio], class: 'btn btn-default'
+
+    .content-list-box__list.clearfix
+      - @audios.each_slice(4) do |audios|
+        %ul.unstyled
+          - audios.each do |audio|
+            %li
+              =link_to audio do
+                - if audio.thumbnail_url.present?
+                  .thumb{ style: "background-image: url(#{audio.thumbnail_url})" }
+                - else
+                  .thumb{ style: "background-image: url(#{asset_url('img-main.jpg')})" }
+
+
+    .content-list-box__paginate.text-center
+      = paginate @audios

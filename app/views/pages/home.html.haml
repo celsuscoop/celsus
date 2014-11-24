@@ -1,0 +1,102 @@
+%section
+  .main_search_area
+    %h1.main_search_area__text
+      Something from nothing
+    .main_search_area__search-bar.search-bar
+      = form_tag(search_contents_path, method: "get") do
+        = text_field_tag(:q, value=nil, options = {:autofocus => true, placeholder: '검색어', class: 'search-bar__form'})
+        = submit_tag "검색", class: 'search-bar__submit_btn'
+    .main_search_area__content-count.text-center
+      %b= number_to_number(Content.count)
+      releases
+
+  .container
+    .content-box
+      .content-box__topic
+        %span.topic 인기 자료
+        %span.sub_topic _ 창조적 영감을 제공하는 자료를 찾을 수 있습니다.
+      .content-box__tab.content-tab
+        %ul.nav.nav-tabs.tab-box
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#video"} Video
+            = image_tag 'main-line.png', class: 'main-line'
+          %li
+            %a{"data-toggle" => "tab", :href => "#image"} Image
+            = image_tag 'main-line.png', class: 'main-line'
+          %li
+            %a{"data-toggle" => "tab", :href => "#audio"} Audio
+            = image_tag 'main-line.png', class: 'main-line'
+          %li
+            %a{"data-toggle" => "tab", :href => "#remix"} Remix
+            = image_tag 'main-line.png', class: 'main-line'
+        .tab-content
+          #video.tab-pane.active.content-tab__contents
+            - @videos.each_slice(6) do |videos|
+              %ul
+                - videos.each do |video|
+                  %li= link_to image_tag(video.thumbnail_url), video
+
+          #image.tab-pane.content-tab__contents
+            - @images.each_slice(6) do |images|
+              %ul
+                - images.each do |image|
+                  %li= link_to image_tag(image.thumbnail_url), image
+
+          #audio.tab-pane.content-tab__contents
+            - @audios.each_slice(6) do |audios|
+              %ul
+                - audios.each do |audio|
+                  %li= link_to image_tag(audio.thumbnail_url), audio
+
+          #remix.tab-pane.content-tab__contents
+            - @remixes.each_slice(6) do |remixes|
+              %ul
+                - remixes.each do |remix|
+                  %li= link_to image_tag(remix.thumbnail_url), remix
+
+        .clearfix
+
+      .content-box__images
+
+    .content-box
+      .content-box__topic
+        %span.topic 키워드 검색
+      .content-box__keywords
+        -(0..5).each do
+          %ul.keyword-list
+            %li.keyword-list__item
+              People
+            %li.keyword-list__item
+              = link_to 'children', '#'
+            %li.keyword-list__item
+              = link_to 'children', '#'
+            %li.keyword-list__item
+              = link_to 'children', '#'
+            %li.keyword-list__item
+              = link_to 'children', '#'
+            %li.keyword-list__item
+              = link_to 'children', '#'
+
+
+
+/ %h2= 'HOME'
+/ = link_to '로그인', new_user_session_path
+/ = link_to '로그아웃', destroy_user_session_path, method: :delete
+/ - if current_user.present?
+/   = current_user.name
+
+/ %section
+/   .page-header
+/     %h2 이미지
+/   - @images.each do |image|
+/     = image.title
+/ %section
+/   .page-header
+/     %h2 비디오
+/   - @videos.each do |video|
+/     = video.title
+/ %section
+/   .page-header
+/     %h2 오디오
+/   - @audios.each do |audio|
+/     = audio.title

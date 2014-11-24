@@ -1,0 +1,121 @@
+.container
+  .background
+  - content_for :facebook_meta do
+    = tag :meta, property: "og:type", content: "website"
+    = tag :meta, property: "og:url", content: audio_url(@audio)
+    =# tag :meta, property: "og:image", content: "http://opentable.or.kr#{@content.featured_url(:th_sq)}"
+    = tag :meta, property: "og:title", content: "셀수스 - #{@audio.title}"
+    = tag :meta, property: "og:description", content: (@audio.body)
+  %section
+    .content-main
+      .row
+        .col-sm-7
+          = raw @audio.iframe_html
+          .content-main__sns.text-left
+            %a{"data-via" => "twitterdev", :href => "https://twitter.com/share"}
+              = image_tag 'btn-tw.png', alt: "트위터버튼"
+            %a{:href => "http://www.facebook.com/sharer.php?u=#{audio_url(@audio)}"}
+              = image_tag 'btn-fb.png', alt: "페이스북버튼"
+            %a{:href => "https://plus.google.com/share?url=#{audio_url(@audio)}"}
+              = image_tag 'btn-google.png', alt: "구글버튼"
+            .fb-like{"data-action" => "like", "data-href" => audio_url(@audio), "data-layout" => "button", "data-share" => "false", "data-show-faces" => "false"}
+
+        .col-sm-5
+          .content-main__spec.content-spec
+            .content-spec__title
+              = image_tag 'icon-video.png'
+              %h3.iblc 제목 : #{@audio.title}
+            %p.content-spec__text
+              내용 : #{@audio.body}
+            %p.content-spec__text
+              = @audio.link
+            %p.content-spec__text
+              - if @audio.owner_name
+                권리자 : #{@audio.owner_name}
+                (
+                = link_to @audio.check_owner_url, @audio.check_owner_url
+                )
+
+            - if current_user
+              = link_to '#', class: 'content-spec__link', "data-target" => "#warning", "data-toggle" => "modal" do
+                저작권 신고하기
+                = image_tag 'icon-button.png'
+            - else
+              = link_to '#', data: { confirm: '로그인 후 이용가능 합니다.'}, class: 'content-spec__link' do
+                저작권 신고하기
+                = image_tag 'icon-button.png'
+            .content-spec__copyright
+              - if @audio.extra_copyright
+                = link_to (@audio.copy_right_image_url), @audio.copy_right_licence_info_url
+              - else
+                = link_to image_tag(@audio.copy_right_image_url), @audio.copy_right_licence_info_url
+          .content-main__download.content-download
+            .content-download__button.text-center
+              - if @audio.download_url.present?
+                %a{:href => audio_download_path(@audio), :role => "button", :class => "iblc"} 다운로드
+              - else
+                .text-center
+                  %br
+                  = '다운로드를 제공하지 않습니다.'
+  .content
+    - if @audio.tags.present?
+      .content-box
+        %h4.content-box__title
+          ="키워드"
+        %p.content-box__description
+          - if @audio.tags
+            - @audio.tags.each do |tag|
+              %span.label.label-default
+                = link_to tag.name, [:tags, :contents, tag: tag.name]
+    - if @friendly_audios.present?
+      .content-box
+        %h4.content-box__title
+          ="관련 오디오"
+        .content-box__imglist.content-imglist
+          .img-list.als-container
+            %span.als-prev
+              = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+            .als-viewport
+              %ul.als-wrapper
+                - @friendly_audios.each do |fr_audio|
+                  %li.als-item
+                    = link_to image_tag(fr_audio.thumbnail_url), fr_audio
+            %span.als-next
+              = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+          .clearfix
+    - if @author_audios.present?
+      .content-box
+        %h4.content-box__title
+          ="작가의 최신 오디오"
+        .content-box__imglist.content-imglist
+          .img-list.als-container
+            %span.als-prev
+              = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+            .als-viewport
+              %ul.als-wrapper
+                - @author_audios.each do |author_audio|
+                  %li.als-item
+                    = link_to image_tag(author_audio.thumbnail_url), author_audio
+            %span.als-next
+              = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+          .clearfix
+
+
+  %section
+    .fb-comments{"data-colorscheme" => "light", "data-href" => audio_url(@audio), "data-numposts" => "5", "width" => "1000"}
+
+  .text-center
+    = link_to '목록으로', [:audios], class: 'btn btn-default'
+
+  = render 'warning_modal'
+  = render 'social_share_script'
+
+:javascript
+  $(function() {
+    $(".content-download").on("change", "input.content-size__radio", function(e) {
+      var $wrapper = $(e.delegateTarget);
+      var url = $(this).parent("li.content-size").data("download-url");
+      $wrapper.find('.content-download__button a').attr("href", url);
+    });
+  });
+

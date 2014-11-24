@@ -1,0 +1,9 @@
+%section
+  .page-header
+    %h2 카테고리 관리
+
+  .panel.panel-default
+    %ul.list-group
+      = render 'form', category: Category.new
+      - @categories.each do |category|
+        = render 'form', category: category

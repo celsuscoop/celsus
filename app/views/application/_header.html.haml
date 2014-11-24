@@ -1,0 +1,39 @@
+%header
+  .navbar
+    .navbar-top
+      .container
+        %a.navbar-brand.iblc.pull-left{href: root_path}=image_tag 'logo.png'
+
+        .navbar-top-button.iblc.pull-right
+          - if current_user.blank?
+            = link_to image_tag("login.png"), user_omniauth_authorize_path(:facebook)
+          - else
+            = link_to image_tag("logout.png"), destroy_user_session_path, method: :delete
+
+        %div.search-box.pull-right
+          = form_tag(search_contents_path, method: "get") do
+            = text_field_tag(:q, value=nil, options = {:autofocus => true, placeholder: '검색어', class: 'form-control iblc pull-left'})
+            = submit_tag("검색", class: 'btn btn-purple btn-block iblc pull-left')
+        / = link_to image_tag('search.png'), '#'
+    .navbar-main
+      .container
+        %ul.nav.navbar-nav
+          %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }
+            = link_to '비디오', '/videos'
+            = image_tag 'header-line.png', class: 'header-line'
+          %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}
+            = link_to '이미지', '/images'
+            = image_tag 'header-line.png', class: 'header-line'
+          %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}
+            = link_to '오디오', '/audios'
+            = image_tag 'header-line.png', class: 'header-line'
+          %li{class: ( (params[:controller] =~ /remix/) ? 'active': '')}
+            = link_to '리믹스', '/remixes'
+            = image_tag 'header-line.png', class: 'header-line'
+
+
+
+
+
+
+

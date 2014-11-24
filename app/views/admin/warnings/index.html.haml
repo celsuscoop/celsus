@@ -1,0 +1,27 @@
+%section
+  .page-header
+    %h2 신고목록
+
+%table.table.table
+  %thead
+    %tr
+      %th
+        %label 콘텐츠
+      %th
+        %label 신고이유
+      %th
+        %label 작성자
+      %th
+  %tbody
+    - @warnings.each do |warning|
+      %tr
+        %td
+          = link_to warning.content.try(:title), [:admin, warning.content]
+        %td
+          = warning.cause
+        %td
+          = warning.user.try(:name)
+        %td
+          = link_to '삭제', [:admin, warning], method: 'delete', data: {confirm: '정말 삭제하시겠습니까?'}
+
+

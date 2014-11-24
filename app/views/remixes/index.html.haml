@@ -1,0 +1,32 @@
+.container
+  .main_content_slide
+    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+      %ol.carousel-indicators
+        - @main_remixes.each_with_index do |main_remix, index|
+          %li{class: index == 0 ? 'active' : '', "data-slide-to" => index, "data-target" => "#carousel-example-generic"}
+      .carousel-inner
+        - @main_remixes.each_with_index do |main_remix, index|
+          - if main_remix.type == 'Video' || main_remix.type == 'Audio'
+            .item{ class: index == 0 ? 'active' : '' }
+              = raw main_remix.iframe_html
+          - elsif main_remix.type == 'Image'
+            .item.thumb{ class: index == 0 ? 'active' : '',  style: "background-image: url(#{main_remix.thumbnail_url})" }
+      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+        %span &lt;
+      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+        %span &gt;
+
+  .content-list-box
+    .content-list-box__title
+      최신 리믹스
+
+    .content-list-box__list.clearfix
+      - @remixes.each_slice(4) do |remixes|
+        %ul.unstyled
+          - remixes.each do |remix|
+            %li
+              =link_to remix do
+                .thumb{ style: "background-image: url(#{remix.thumbnail_url})" }
+
+    .content-list-box__paginate.text-center
+      = paginate @remixes

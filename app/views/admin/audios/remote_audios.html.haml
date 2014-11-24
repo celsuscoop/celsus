@@ -1,0 +1,44 @@
+= link_to '선택가져오기', fetch_selected_remote_audios_admin_audios_path, class: 'btn btn-default btn-sm fetch_audios'
+- if @audios.present?
+  %table.table
+    %tr
+      %th= check_box_tag :check_all
+      %th 오디오
+      %th 제목
+      %th 저작권
+      %th
+    - @audios.each do |audio|
+      %tr
+        %td= check_box_tag "audio[id][]", audio.id, false, class: "audio_row", id: nil
+        %td= image_tag audio.artwork_url
+        %td= audio.title
+        %td= audio.license
+        %td= link_to "가져오기", fetch_remote_audio_admin_audios_path(remote_audio_id: audio.id), class: 'btn btn-default btn-sm', method: 'post'
+- else
+  = '새로운 비디오가 없습니다.'
+
+:javascript
+  $(function() {
+    $("#check_all").click(function() {
+      var is_checked = $(this).is(":checked");
+      $(".audio_row").prop('checked', is_checked);
+    });
+
+    $(".fetch_audios").click(function(e) {
+      e.preventDefault();
+      var selected_audio_ids = [];
+      $.each( $('.audio_row:checked'), function(i, obj) {
+        selected_audio_ids.push($(obj).val());
+      });
+
+      var url = $(this).attr("href");
+      var csrf_token = $('meta[name=csrf-token]').attr('content');
+      var csrf_param = $('meta[name=csrf-param]').attr('content');
+      var params = {};
+      params[csrf_param] = csrf_token;
+      params["audio_ids"] = selected_audio_ids;
+      $.post( url, params, function(data) {
+        window.location = data.redirect_url;
+      });
+    });
+  });

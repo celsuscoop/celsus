@@ -1,0 +1,86 @@
+%section
+  .page-header
+    %h2 Remixes
+
+  .well.admin-content-list-box
+    .admin-content-search.text-center
+      = form_tag([:admin, :contents], method: "get") do
+        - content_copyright = Content.pluck(:copyright).uniq
+        .admin-search-wrapper
+          .row
+            .col-xs-1
+              = label_tag "작성자"
+            .col-xs-2
+              = text_field_tag(:author, value=nil, options = {:value => params[:author], class: 'form-control content-search__form iblc'})
+            .col-xs-1
+              = label_tag "제목"
+            .col-xs-2
+              = text_field_tag(:title, value=nil, options = {:value => params[:title], class: 'form-control content-search__form iblc'})
+            .col-xs-1
+              = label_tag "본문"
+            .col-xs-2
+              = text_field_tag(:body, value=nil, options = {:value => params[:body], class: 'form-control content-search__form iblc'})
+            .col-xs-1
+              = label_tag "권리자"
+            .col-xs-2
+              = text_field_tag(:owner_name, value=nil, options = {:value => params[:owner_name], class: 'form-control content-search__form iblc'})
+          .row
+            .col-xs-1
+              = label_tag "리믹스"
+            .col-xs-2
+              = select_tag 'remix', options_for_select([['리믹스', true], ['리믹스아님',false]], (params[:remix] rescue '')), class: "selectpicker iblc", :prompt => "---------"
+            .col-xs-1
+              = label_tag "공개"
+            .col-xs-2.text-left
+              = select_tag 'open', options_for_select([['공개', true], ['비공개',false]], (params[:open] rescue '')), class: "selectpicker iblc", :prompt => "---------"
+            .col-xs-1
+              = label_tag "메인노출"
+            .col-xs-2.text-left
+              = select_tag 'main', options_for_select([['노출', true], ['노출 안함',false]], (params[:main] rescue '')), class: "selectpicker iblc", :prompt => "---------"
+            .col-xs-1
+              = label_tag "저작권"
+            .col-xs-2
+              = select_tag 'copyright', options_for_select(content_copyright, (params[:copyright] rescue '')), class: "selectpicker iblc", :prompt => "저작권을 선택해 주세요"
+          .row
+            .col-xs-11.text-right
+              = submit_tag "검색", class: 'btn btn-purple search-bar__submit_btn iblc'
+
+
+  %table.table.table
+    %thead
+      %tr
+        %th
+          %label 썸네일
+        %th
+          %label 제목
+        %th
+          %label 리믹스
+        %th
+          %label 공개
+        %th
+          %label 메인노출
+        %th
+          %label 작성자
+        %th
+    %tbody
+      - page = params[:page] || '1'
+      - @contents.each do |content|
+        %tr
+          %td
+            .thumb{ style: "background-image: url(#{content.thumbnail_url}); height: 100px; width: 150px;"}
+          %td
+            = link_to content.title, [:admin, content]
+          %td
+            = content.remix_ko
+          %td.is_open_td[content]
+            %p= content.is_open
+            = link_to '변경', [:admin , content, :toggle_open, page: page], method: :put, class: 'btn btn-xs btn-default', :remote => true if can? :toggle_open, content
+          %td.main_td[content]
+            %p= content.main
+            = link_to '변경', [:admin , content, :toggle_main, page: page], method: :put, class: 'btn btn-xs btn-default', :remote => true if can? :toggle_main, content
+          %td
+            = content.user.name if content.user
+          %td
+            = link_to '수정', [:edit, :admin, content], class: 'btn btn-xs btn-default' if can? :update, content
+  .paginate
+    = paginate @contents

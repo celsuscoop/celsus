@@ -1,0 +1,5 @@
+if (<%= @image.main %> == true){
+  $('.main_td#image_<%= @image.id %>').find('p').html('<p>true</p>');
+} else if (<%= @image.main %> == false){
+  $('.main_td#image_<%= @image.id %>').find('p').html('<p>false</p>');
+}

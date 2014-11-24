@@ -1,0 +1,45 @@
+- if @images.present?
+  %table.table
+    %tr
+      %th= check_box_tag :check_all
+      %th 이미지
+      %th 제목
+      %th 저작권
+      %th
+    - @images.each do |image|
+      %tr
+        %td= check_box_tag "image[id][]", image.id, false, class: "image_row", id: nil
+        %td= image_tag image.thumbnail_url, style: "width: 200px;"
+        %td= image.name
+        %td= image.license_ko
+        %td= link_to '가져오기', fetch_remote_image_admin_images_path(image_id: image.id), class: 'btn btn-default btn-sm', method: 'post'
+    = link_to '선택가져오기', fetch_selected_remote_images_admin_images_path, class: 'btn btn-default btn-sm fetch_images'
+
+- else
+  = '새로운 이미지가 없습니다.'
+
+:javascript
+  $(function() {
+    $("#check_all").click(function() {
+      var is_checked = $(this).is(":checked");
+      $(".image_row").prop('checked', is_checked);
+    });
+
+    $(".fetch_images").click(function(e) {
+      e.preventDefault();
+      var selected_image_ids = [];
+      $.each( $('.image_row:checked'), function(i, obj) {
+        selected_image_ids.push($(obj).val());
+      });
+      var url = $(this).attr("href");
+
+      var csrf_token = $('meta[name=csrf-token]').attr('content');
+      var csrf_param = $('meta[name=csrf-param]').attr('content');
+      var params = {};
+      params[csrf_param] = csrf_token;
+      params['image_ids']  = selected_image_ids;
+      $.post( url, params, function(data) {
+        window.location = data.redirect_url;
+      });
+    });
+  });

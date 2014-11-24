@@ -1,0 +1,49 @@
+!!!
+%html.fuelux
+  %head
+    %meta{charset: "utf-8"}
+    %title Celsus
+    %meta{content: "width=1024", name: "viewport"}
+    %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge"}
+    /[if lt IE 9]
+    //  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+
+  %body
+    .container
+      - if flash[:notice]
+        .alert.alert-danger.main_notice
+          = flash[:notice]
+      - if flash[:alert]
+        .alert.alert-danger.main_notice
+          = flash[:alert]
+      #wrapper
+        %header
+          .header.nav
+            %h1.main-header.nav.navbar-left
+              =content_tag(:span, "셀수스")
+            %nav.main-navgation.nav.navbar-right{ role: 'navigation' }
+              %ul.nav.navbar-nav.navbar-right
+                %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }
+                  = link_to '비디오',  [:admin, :videos]
+                %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}
+                  = link_to '이미지', [:admin, :images]
+                %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}
+                  = link_to '오디오', [:admin, :audios]
+                %li{class: ( (params[:controller] =~ /remix/) ? 'active': '')}
+                  = link_to '리믹스', [:admin, :contents]
+                - if current_user.admin? || current_user.su?
+                  %li{class: ( (params[:controller] =~ /user/) ? 'active': '')}
+                    = link_to '유저목록', [:admin, :users]
+                  %li{class: ( (params[:controller] =~ /warning/) ? 'active' : '')}
+                    = link_to "신고", [:admin, :warnings]
+                  %li{class: ( (params[:controller] =~ /posts/) ? 'active' : '')}
+                    = link_to "블로그", [:admin, :posts]
+                  %li{class: ( (params[:controller] =~ /categories/) ? 'active' : '')}
+                    = link_to "카테고리", [:admin, :categories]
+        .contents
+          = yield

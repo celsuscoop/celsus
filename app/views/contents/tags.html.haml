@@ -1,0 +1,17 @@
+.container
+  .content-list-box
+    .content-list-box__title
+      ="'#{params[:tag]}' 에 대한 태그입니다."
+    .content-list-box__list.clearfix
+      - @contents.each_slice(4) do |contents|
+        %ul.unstyled
+          - contents.each do |content|
+            %li
+              =link_to content do
+                .thumb{ style: "background-image: url(#{content.thumbnail_url})" }
+              %p.text-right= content.type
+
+
+
+    .content-list-box__paginate.text-center
+      = paginate @contents if @contents.present?

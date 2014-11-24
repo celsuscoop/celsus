@@ -1,0 +1,97 @@
+.container
+  %section
+    .content-main
+      .row
+        .col-sm-7
+          = raw @video.iframe_html
+        .col-sm-5
+          .content-main__spec.content-spec
+            .content-spec__title
+              = image_tag 'icon-video.png'
+              %h3.iblc 제목 : #{@video.title}
+            %p.content-spec__text
+              내용 : #{@video.body}
+            %p.content-spec__text
+              = @video.link
+            %p.content-spec__text
+              - if @video.owner_name
+                권리자 : #{@video.owner_name}
+                (
+                = link_to @video.check_owner_url, @video.check_owner_url
+                )
+            .content-spec__copyright
+              - if @video.extra_copyright
+                = link_to (@video.copy_right_image_url), @video.copy_right_licence_info_url
+              - else
+                = link_to image_tag(@video.copy_right_image_url), @video.copy_right_licence_info_url
+          .content-main__download.content-download
+            %ul.content-download__list
+              - if @video.download_links_hash.present?
+                - @video.download_links_hash.each do |down|
+                  %li.content-size{"data-download-url" => video_download_path(@video, type_quality: down["quality"])}
+                    %input.content-size__radio{:type => "radio", name: "video_radio", value: down["quality"]}
+                    %span.content-size__option
+                      = "#{down['width']} X #{down['height']}"
+                    %span.content-size__type
+                      = down["type"]
+                .content-download__button.text-center
+                  %a{:href => "#", :role => "button", :class => "iblc"} 다운로드
+              - else
+                .text-center
+                  %br
+                  = '다운로드를 제공하지 않습니다.'
+    .content
+      .content-box
+        %h4.content-box__title
+          ="키워드"
+        %p.content-box__description
+          - if @video.tags
+            - @video.tags.each do |tag|
+              %span.label.label-default
+                = link_to tag.name, [:tags, :contents, tag: tag.name]
+
+      - if @friendly_videos.present?
+        .content-box
+          %h4.content-box__title
+            ="관련 비디오"
+          .content-box__imglist.content-imglist
+            .img-list.als-container
+              %span.als-prev
+                = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+              .als-viewport
+                %ul.als-wrapper
+                  - @friendly_videos.each do |fr_video|
+                    %li.als-item
+                      = link_to image_tag(fr_video.thumbnail_url), fr_video
+              %span.als-next
+                = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+            .clearfix
+      - if @author_videos.present?
+        .content-box
+          %h4.content-box__title
+            ="작가의 최신 비디오"
+          .content-box__imglist.content-imglist
+            .img-list.als-container
+              %span.als-prev
+                = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+              .als-viewport
+                %ul.als-wrapper
+                  - @author_videos.each do |author_video|
+                    %li.als-item
+                      = link_to image_tag(author_video.thumbnail_url), author_video
+              %span.als-next
+                = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+            .clearfix
+  .text-center
+    = link_to '목록으로', [:admin, :videos], class: 'btn btn-default'
+    = link_to '수정하기', [:edit, :admin, @video], class: 'btn btn-default' if can? :update, @video
+    = link_to '삭제하기', [:admin, @video], method: 'delete', data: {  confirm: '정말 삭제하시겠습니까?' }, class: 'btn btn-default'  if can? :destroy, @video
+
+  :javascript
+    $(function() {
+      $(".content-download").on("change", "input.content-size__radio", function(e) {
+        var $wrapper = $(e.delegateTarget);
+        var url = $(this).parent("li.content-size").data("download-url");
+        $wrapper.find('.content-download__button a').attr("href", url);
+      });
+    });

@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.vimeo.com/videos/106886061
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - bearer ef7dee3c564c05829bb8d9cca0a0ce33
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 04 Nov 2014 05:29:55 GMT
+      Server:
+      - Apache
+      Vary:
+      - Accept,Vimeo-Client-Id,Accept-Encoding
+      Cache-Control:
+      - no-cache, max-age=315360000
+      Expires:
+      - Fri, 01 Nov 2024 05:29:55 GMT
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1492'
+      Content-Type:
+      - application/vnd.vimeo.video+json
+      Via:
+      - 1.1 sjc1-10
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA51W227bOBD9FUIP+7J2dLPkC7BY9BIULbZIkWSf6oVBSbTF
+        WCIFkrJiBPn3PZQcW0mUNOmDAXluhzOcOcM7p1bcWTjujmdMatf34tks9mLf
+        GTmClgyqL5cffpyTq4vPH8iY6FwqQ9a8KGGQMZ0qXhkuBey+fv/8cUFyY6qF
+        6zZNc8bLLDlLZekabgrmGhPOvHgeB+7fiq1Xf4lytS7KzYqmZhUuRcJyLjJi
+        ckZ0ygTTXSyNYDteMtlG8r2pN4u86WwplqJR3DA1zrhiqZEKp7upteGCKJlw
+        oSVMjjq5JlUujdwoWuV7mCaKCUPSXHFt9kCXSWLFJVVbQnXeIM18KXTOlLJy
+        RdOcFSRnIlP8liyFkvjYSKhSRYU2UpAbmXeoRknrwzXlNCfaKGqMlZfqjBTM
+        +tzQPUmJqrVmRbEUa660ITS1BU6lMQiFAgBe1ihJyW+ZzS6juCSiBacZS7fc
+        HlqWRFZQmX0BkwaKpcgpV25Jt6yu3IaqDNVgMCmo4ZSktTIckVnGXygZylxJ
+        3QLeIAjRPGvaQ6aykLZaVoFMSUqV4mLTZqbYGIWWKoPgeN6uuJwKommzZ2op
+        KiUrpsweZdamsyno3tbO8KJguIct2xPNDIFlVqe2s3AbGmGosMAU5WcNLo9m
+        a6C1EYfsNrUQtiCIarN9waphGqCkkdIw8aJVmwZJapXmL9qoPbLsmiPdvmiV
+        MIHMU85uqLVq8zw2ZVsOndMG5TKyXIqP11fHS99QveX2cijKZmvcdqq9T2kT
+        tdOAyTQEgJfnn8n5j6+fkLzJca/wgzSMypL4ZxH5A/dmBf+gzIozTWadJlgK
+        Wmdckg2jaoE2zJmsNPn0/es1if6FW9eLGdvxlLndZePI0yAAERRcbMEAQ/N6
+        opOsxhy0VOF7k3DkNDwzOf4EM2/k5IxvcuMspgH+pIohz2xleEtAgedPxt58
+        HITXXrDw40U0/9PzFp6HoKXM+Jo/sfX9sTe59qKF7/dtUSvcs1nZY4iNs/jp
+        aLpmzn/2/GAcDX9RF8XIqRTf0XTvLO6cHWcNwlKxT2S2RxBWJiyDpKoTeNm0
+        ZCMKSSFb00KzkUMzfBtVM4tYlkDUvQj3CM9TUysG6c87x+wre26T12UiKC+c
+        1wrzpM78rK10mom22C2Fu5O5589mk8Bf2QBnN9UGmK/hzOMeTDR5Nwz834AS
+        T3ooYfxuFPi/ASWYRycUP47fiwL/W7i9Bcnr5eNH784H/rdwewOS30eaRu/u
+        AgBNow4HrW7oxjYevsBKtjPvnAocjI/ZPA7nNvrWtqbvR9N+A89DdG7JDM2o
+        odarZZ6W49ogmFmsFD30lHAfdMfgAzadBudjtwYLM922UV94nLg9q5Ejq8Mp
+        fjpfzq8h+HFxdW3H2khDC2fh3ePoHLMPh+N5G2rSvLB0av9hZtmjCT4ySscI
+        h3PU4EzthuFkHs/DuXuK0SO6+y7L34/aVqIf0B6/pZ1VBdZgtsgHf92d/lGc
+        eRQHge+d3m/fug1/edjwr9G1jXDyL2R6IGzni2JM7OyOHpGrT9AlXEL85AVm
+        15DB2oHs9Hg7CNr43y4vPp52IxazfSIOvxnt4V1RRt5kFgdzF689lmigHa1v
+        xniz9IJZL2dod/hjPxh70+sgXGB9RPFxH9A0xU4zlsyL2jbSEDFXeAgqys1p
+        HsM+kf1y7h/83Vk0icPZZBV6t+GzsX+OMo3eM/TPUKbRcehfQ3nELe2fd+JY
+        dsHv10ih96hsv1M3WzjvSGSHfjiQ2SvMZId+xw3viOfRkLg9HfqhSOpyyKiT
+        o7dyisjFgMlRM3LWrH0fPDFopVDKopANFAMWR9WDWftIGTazqpGzUbKuBkId
+        5D26fax/4FpbY8TjcsCmpxs5Hf8+NzrIsUtyqobS7uQnu9OEPcN70Fg0WdDD
+        9XVE1ydrKxng864uv8+6x7oeCbTl3Yclab9pVT3EsOK6fdbtsKtpUjDn/n9N
+        2x9+Sw8AAA==
+    http_version: 
+  recorded_at: Tue, 04 Nov 2014 05:29:55 GMT
+recorded_with: VCR 2.9.3

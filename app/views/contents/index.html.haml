@@ -1,0 +1,23 @@
+%section
+  .page-header
+    %h2 Contents
+
+
+%table.table.table
+  %thead
+    %tr
+      %th
+        %label 제목
+      %th
+        %label 본문
+      %th
+        %label 링크
+  %tbody
+    - @contents.each do |content|
+      %tr
+        %td
+          = content.title
+        %td
+          = content.body
+        %td
+          = link_to content.link, content

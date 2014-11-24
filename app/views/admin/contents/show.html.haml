@@ -1,0 +1,12 @@
+%section
+  .page-header
+    %h2 Contents
+  = @content.title
+  = @content.body
+  = raw @content.link
+  .wrapper{style: 'width: 100%;'}
+    = raw @content.iframe_html
+  = image_tag @content.file
+  = link_to 'index', [:admin, :contents], class: 'btn btn-default'
+  = link_to 'edit', [:edit, :admin, @content], class: 'btn btn-default'
+  = link_to 'delete', [:admin, @content], method: 'delete', data: {  confirm: '정말 삭제하시겠습니까?' }, class: 'btn btn-default'

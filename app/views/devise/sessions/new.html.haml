@@ -1,0 +1,40 @@
+.container
+  .login.text-center
+    %h2 로그인 후 이용이 가능 합니다.
+    .sign-in-with-facebook
+      = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-default btn-primary' do
+        %i.fa.fa-facebook-square
+        페이스북으로 로그인
+/ %section#sign-in-form.form-center
+/   %h2
+/     %span 로그인
+/   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+/     %fieldset
+/       .form-field
+/         .form-group
+/           = f.label :email do
+/             %i.fa.fa-user
+/             이메일
+/           = f.email_field :email, :autofocus => true, class: 'form-control'
+/         .form-group
+/           = f.label :password do
+/             %i.fa.fa-lock
+/             비밀번호
+/           = f.password_field :password, class: 'form-control'
+
+/         - if devise_mapping.rememberable?
+/           %div
+/             = f.check_box :remember_me
+/             = f.label :remember_me, '비밀번호 저장'
+
+/       .form-submit
+/         .actions.text-center
+/           = f.submit '로그인', class: 'btn btn-success btn-lg btn-sign-in'
+/           = link_to '회원가입', new_user_registration_path, class: 'btn btn-lg btn-info btn-sign-up'
+
+/         .sign-in-with-facebook
+/           %em
+/             %span 또는
+/           = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-default btn-block btn-primary' do
+/             %i.fa.fa-facebook-square
+/             페이스북으로 로그인

@@ -1,0 +1,33 @@
+= bootstrap_form_for @video do |f|
+  = f.text_field :title
+  = f.text_area :body, rows: 10
+  = f.text_field :link
+  = f.check_box :is_remix
+  = f.check_box :extra_copyright
+  .basic_copyright_area
+    = f.select :copyright, Content::COPYRIGHT
+  .extra_copyright_area
+    = f.text_field :copyright_extra
+  = f.text_field :tag_list, placeholder: '콤마로 구별됩니다.'
+  .parent-content-form
+    = f.select :parent_content_ids, Content.all.map { |c| [c.title, c.id] }, {include_blank: true}, class: "chosen-select", :multiple => 'multiple'
+  = f.text_field :owner_name
+  = f.text_field :owner_url
+  = f.submit
+
+:javascript
+  $(document).ready(function(){
+    var check_parent_content_form = function() {
+      var checked = $('#video_is_remix').is(":checked");
+      if(checked){
+        $('.parent-content-form').show();
+      }else{
+        $('.parent-content-form').hide();
+      }
+    };
+
+    check_parent_content_form();
+    $('#video_is_remix').click(function(e){
+      check_parent_content_form();
+    });
+  });

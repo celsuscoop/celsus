@@ -1,0 +1,63 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ko:
+  activerecord:
+    models:
+      user: 사용자
+      image: 이미지
+      video: 비디오
+      audio: 오디오
+      post: 블로그
+      category: 카테고리
+
+    attributes:
+      user:
+        email: 이메일
+        role: 역할
+
+      content:
+        title: 제목
+        body: 본문
+        view: 조회수
+        download_count: 다운로드 횟수
+        link: 링크
+        file: 첨부파일
+        recommend: 추천
+        main: 메인노출
+        is_open: 공개
+        is_remix: 리믹스
+        user_id: 작성자
+        created_at: 작성일
+        updated_at: 수정일
+        tag_list: 태그
+        copyright: 저작권
+        copyright_extra: 저작권
+        extra_copyright: 기타 저작권
+        parent_content_ids: 원본 컨텐츠
+        owner_name: 권리자 이름
+        owner_url: 권리자 URL
+      warning:
+        cause: 신고 사유
+      post:
+        title: 제목
+        body: 내용
+        category_id: 카테고리

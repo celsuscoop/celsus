@@ -1,0 +1,14 @@
+.container
+  %section
+    .page-header.post-header
+      .post-header__title
+        %h2
+          [ #{@post.category.name if @post.category} ]
+          = @post.title
+      .post-header__created-at
+        = l @post.created_at
+
+  .post-body= @post.body
+
+  .post-btn.text-center
+    = link_to '목록으로', [:posts], class: 'btn btn-default'
