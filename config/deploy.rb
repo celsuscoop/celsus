@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'celsus'
-set :repo_url, 'git@github.com:UFOfactory/celsus.git'
+set :repo_url, 'git@github.com:celsuscoop/celsus.git'
 
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.1.2'
