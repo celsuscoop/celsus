@@ -18,16 +18,16 @@
     .navbar-main
       .container
         %ul.nav.navbar-nav
-          %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }
+          %li{class: ( (params[:controller] =~ /video/) && !(request.referer =~/remix/) ? 'active': '') }
             = link_to '비디오', '/videos'
             = image_tag 'header-line.png', class: 'header-line'
-          %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}
+          %li{class: ( (params[:controller] =~ /image/) && !(request.referer =~/remix/) ? 'active': '')}
             = link_to '이미지', '/images'
             = image_tag 'header-line.png', class: 'header-line'
-          %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}
+          %li{class: ( (params[:controller] =~ /audio/) && !(request.referer =~/remix/) ? 'active': '')}
             = link_to '오디오', '/audios'
             = image_tag 'header-line.png', class: 'header-line'
-          %li{class: ( (params[:controller] =~ /remix/) ? 'active': '')}
+          %li{class: ( (params[:controller] =~ /remix/) || request.referer =~/remix/ ? 'active': '')}
             = link_to '리믹스', '/remixes'
             = image_tag 'header-line.png', class: 'header-line'
 

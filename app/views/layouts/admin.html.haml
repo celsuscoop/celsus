@@ -25,7 +25,8 @@
         %header
           .header.nav
             %h1.main-header.nav.navbar-left
-              =content_tag(:span, "셀수스")
+              %a.navbar-brand.iblc.pull-left.header-logo{href: root_path}=image_tag 'logo.png'
+
             %nav.main-navgation.nav.navbar-right{ role: 'navigation' }
               %ul.nav.navbar-nav.navbar-right
                 %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }
