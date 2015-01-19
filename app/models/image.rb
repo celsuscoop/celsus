@@ -105,6 +105,8 @@ class Image < Content
         self.link  = "https://imageshack.com/i/#{resp_hash['result']['id']}" if self.link.blank?
         self.source_info = resp_hash
         self.iframe_html = 'http://' + resp_hash["result"]["direct_link"]
+      else
+        errors.add(:link, "이미지를 가져올 수 없습니다. 주소를 다시한번 확인해 주세요.")
       end
     end
   end
