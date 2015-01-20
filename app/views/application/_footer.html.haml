@@ -25,10 +25,10 @@
           = link_to "UFOfactory", "http://ufofactory.org"
 
       .menu-list.iblc
-        .menu-list__linkbox.iblc
+        .menu-list__linkbox.iblc.menu-list__linkbox--first
           %p= link_to '셀수스 소개', posts_path(category: '셀수스 소개')
           %p= link_to '공지사항', posts_path(category: '공지사항')
-          %p= link_to '블로그', posts_path(category: '블로그')
+          %p= link_to '블로그', posts_path
           %p= link_to '연락처', posts_path(category: '연락처')
           %p= link_to 'FAQ', posts_path(category: 'FAQ')
         .menu-list__linkbox.iblc
