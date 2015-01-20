@@ -106,7 +106,7 @@ class Image < Content
         self.source_info = resp_hash
         self.iframe_html = 'http://' + resp_hash["result"]["direct_link"]
       else
-        errors.add(:link, "이미지를 가져올 수 없습니다. 주소를 다시한번 확인해 주세요.")
+        errors.add(:link, "이미지를 가져올 수 없습니다. 주소를 다시 한번 확인해 주세요.")
       end
     end
   end

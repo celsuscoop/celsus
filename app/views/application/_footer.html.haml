@@ -2,10 +2,10 @@
   .footer-menu
     .container
       %ul
-        %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }= link_to '공지사항', posts_path(category: '공지사항')
-        %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}= link_to 'FAQ', '#'
-        %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}= link_to '신고/제보', '#'
-        %li{class: ( (params[:controller] =~ /post/) ? 'active': '')}= link_to '블로그', posts_path
+        %li= link_to '셀수스 소개', posts_path(category: '셀수스 소개')
+        %li= link_to '저작권 안내', posts_path(category: '저작권 안내')
+        %li= link_to '콘텐츠 제출', posts_path(category: '콘텐츠 제출')
+        %li= link_to 'FAQ', posts_path(category: 'FAQ')
   .footer-info
     .container
       .logo.iblc
@@ -16,12 +16,9 @@
         %span 팩스    02-888-8888
         %span 이메일   service@celsus.org
         %ul.menu-list
-          %li.iblc.pull-left
-            %a{:href => ""} 자주하는 질문
-          %li.iblc.pull-left
-            %a{:href => ""} 컨텐츠 사용안내
-          %li.iblc.pull-left
-            %a{:href => ""} 상품구매안내
+          %li.iblc.pull-left= link_to '공지사항', posts_path(category: '셀수스 소개')
+          %li.iblc.pull-left= link_to '신고/제보', posts_path(category: '신고/제보')
+          %li.iblc.pull-left= link_to '활동가 모집', posts_path(category: '활동가 모집')
           .clearfix
         %small
           © 2014 Celsus. Powered by Celsus, manufactured by
@@ -29,15 +26,26 @@
 
       .menu-list.iblc
         .menu-list__linkbox.iblc
-          %a{:href => ""} Celsus 회사소개
-          %a{:href => ""} Celsus 오디오
+          %p= link_to '셀수스 소개', posts_path(category: '셀수스 소개')
+          %p= link_to '공지사항', posts_path(category: '공지사항')
+          %p= link_to '블로그', posts_path(category: '블로그')
+          %p= link_to '연락처', posts_path(category: '연락처')
+          %p= link_to 'FAQ', posts_path(category: 'FAQ')
         .menu-list__linkbox.iblc
-          %a{:href => ""} Celsus 비디오
-          %a{:href => ""} Celsus 리믹스
-          %a{:href => ""} Celsus 이미지
+          %p= link_to '저작권 안내', posts_path(category: '저작권 안내')
+          %p= link_to '개인정보 취급방침', posts_path(category: '개인정보 취급방침')
+          %p= link_to '이용약관', posts_path(category: '이용약관')
+          %p= link_to '신고/제보', posts_path(category: '신고/제보')
         .menu-list__linkbox.iblc
-          %a{:href => ""} 개인정보취급방침
-          %a{:href => ""} 이용약관
+          %p= link_to '콘텐츠 제출', posts_path(category: '콘텐츠 제출')
+          %p= link_to '활동가 모집', posts_path(category: '활동가 모집')
+          %p= link_to '셀수스 비디오', [:videos]
+          %p= link_to '셀수스 이미지', [:images]
+          %p= link_to '셀수스 오디오', [:audios]
+          %p= link_to '셀수스 리믹스', [:remixes]
+
+
+
 
 
 
