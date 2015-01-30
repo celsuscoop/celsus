@@ -103,7 +103,7 @@ class Content < ActiveRecord::Base
 
   def self.in_query(q)
     if q.present?
-      where('title like ? or body like ? or copyright like ?',"%#{q}%","%#{q}%","%#{q}%")
+      joins(:tags).where("tags.name like ? or title like ? or body like ? or copyright like ?","%#{q}%","%#{q}%","%#{q}%","%#{q}%")
     else
       all
     end
