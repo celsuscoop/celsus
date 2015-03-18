@@ -2,66 +2,45 @@
   .footer-menu
     .container
       %ul
-        %li= link_to '셀수스 소개', posts_path(category: '셀수스 소개')
-        %li= link_to '저작권 안내', posts_path(category: '저작권 안내')
-        %li= link_to '콘텐츠 제출', posts_path(category: '콘텐츠 제출')
-        %li= link_to 'FAQ', posts_path(category: 'FAQ')
+        %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }= link_to '공지사항', posts_path(category: '공지사항')
+        %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}= link_to 'FAQ', '#'
+        %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}= link_to '신고/제보', '#'
+        %li{class: ( (params[:controller] =~ /post/) ? 'active': '')}= link_to '블로그', posts_path
   .footer-info
     .container
       .logo.iblc
         = image_tag 'footer-logo.png', class: 'footer-logo'
       .info.iblc
         고객지원센터
-        %h3 02-777-7777
-        %span 팩스    02-888-8888
-        %span 이메일   service@celsus.org
+        .social-buttons
+          = link_to "http://facebook.com/celsuscoop", target: '_blank' do
+            %i.fa.fa-facebook
+          = link_to "http://twitter.com/celsuscoop", target: '_blank' do
+            %i.fa.fa-twitter
+          = mail_to "mailservice@celsus.org", target: '_blank' do
+            %i.fa.fa-envelope-o
+
+        %p 이메일   service@celsus.org
         %ul.menu-list
-          %li.iblc.pull-left= link_to '공지사항', posts_path(category: '셀수스 소개')
-          %li.iblc.pull-left= link_to '신고/제보', posts_path(category: '신고/제보')
-          %li.iblc.pull-left= link_to '활동가 모집', posts_path(category: '활동가 모집')
+          %li.iblc.pull-left
+            %a{:href => ""} 자주하는 질문
+          %li.iblc.pull-left
+            %a{:href => ""} 컨텐츠 사용안내
+          %li.iblc.pull-left
+            %a{:href => ""} 상품구매안내
           .clearfix
         %small
-          © 2015 Celsus. Powered by Celsus, manufactured by
+          © 2014 Celsus. Powered by Celsus, manufactured by
           = link_to "UFOfactory", "http://ufofactory.org"
 
       .menu-list.iblc
-        .menu-list__linkbox.iblc.menu-list__linkbox--first
-          %p= link_to '셀수스 소개', posts_path(category: '셀수스 소개')
-          %p= link_to '공지사항', posts_path(category: '공지사항')
-          %p= link_to '블로그', posts_path
-          %p= link_to '연락처', posts_path(category: '연락처')
-          %p= link_to 'FAQ', posts_path(category: 'FAQ')
         .menu-list__linkbox.iblc
-          %p= link_to '저작권 안내', posts_path(category: '저작권 안내')
-          %p= link_to '개인정보 취급방침', posts_path(category: '개인정보 취급방침')
-          %p= link_to '이용약관', posts_path(category: '이용약관')
-          %p= link_to '신고/제보', posts_path(category: '신고/제보')
+          %a{:href => ""} Celsus 회사소개
+          %a{:href => ""} Celsus 오디오
         .menu-list__linkbox.iblc
-          %p= link_to '콘텐츠 제출', posts_path(category: '콘텐츠 제출')
-          %p= link_to '활동가 모집', posts_path(category: '활동가 모집')
-          %p= link_to '셀수스 비디오', [:videos]
-          %p= link_to '셀수스 이미지', [:images]
-          %p= link_to '셀수스 오디오', [:audios]
-          %p= link_to '셀수스 리믹스', [:remixes]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          %a{:href => ""} Celsus 비디오
+          %a{:href => ""} Celsus 리믹스
+          %a{:href => ""} Celsus 이미지
+        .menu-list__linkbox.iblc
+          %a{:href => ""} 개인정보취급방침
+          %a{:href => ""} 이용약관
