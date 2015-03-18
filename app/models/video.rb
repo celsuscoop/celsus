@@ -60,7 +60,16 @@ class Video < Content
   end
 
   def download_url(type_quality)
-    self.download_links_hash.select{|type| type["quality"] == type_quality }.first["link"]
+    download_info = self.download_links_hash.select{|type| type["quality"] == type_quality }.first
+    return if download_info.blank?
+
+    expire_at = Time.parse(download_info["expires"])
+    if expire_at < Time.now
+      _set_video_info( _fetch_video_info )
+      self.save
+    end
+    download_info = self.reload.download_links_hash.select{|type| type["quality"] == type_quality }.first
+    download_info["link"]
   end
 
   def adjust_remote_content_id
@@ -71,20 +80,9 @@ class Video < Content
 
   def fetch_video_info
     return if not remote_content_id_changed?
-    request_url =  "https://api.vimeo.com/videos/#{self.remote_content_id}"
-    resp_hash = _fetch_video_info(request_url)
-
+    resp_hash = _fetch_video_info
     return if resp_hash.blank?
-    self.source_info = resp_hash
-    string = <<-RUBY
-<iframe width="100%" height="400" scrolling="no" frameborder="no" src="//player.vimeo.com/video/#{self.remote_content_id}"></iframe>
-RUBY
-    self.iframe_html = string
-
-    self.title = self.source_info["name"] if self.title.blank?
-    _copyright = license_match(source_info["license"])
-    self.copyright = _copyright if self.copyright.blank?
-    self.link = self.source_info["link"]
+    _set_video_info(resp_hash)
   end
 
   def unique_remote_content_id
@@ -100,11 +98,24 @@ RUBY
     end
   end
 
-  def _fetch_video_info(request_url)
+  def _fetch_video_info
+    request_url =  "https://api.vimeo.com/videos/#{self.remote_content_id}"
     resp = RestClient.get(request_url, {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"} )
     JSON.parse(resp)
   rescue
     {}
+  end
+
+  def _set_video_info(resp_hash)
+    self.source_info = resp_hash
+    string = <<-RUBY
+<iframe width="100%" height="400" scrolling="no" frameborder="no" src="//player.vimeo.com/video/#{self.remote_content_id}"></iframe>
+RUBY
+    self.iframe_html = string
+    self.title = self.source_info["name"] if self.title.blank?
+    _copyright = license_match(source_info["license"])
+    self.copyright = _copyright if self.copyright.blank?
+    self.link = self.source_info["link"]
   end
 
   def thumbnail_url
@@ -112,6 +123,4 @@ RUBY
   rescue
     ''
   end
-
-
 end
