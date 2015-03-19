@@ -1,6 +1,16 @@
 require 'ostruct'
 
 class RemoteVideo < OpenStruct
+  attr_accessor :already_taken
+
+  def initialize(*args)
+    @already_taken = false
+    super
+  end
+
+  def already_taken?
+    @already_taken
+  end
 
   def thumbnail_url
     i = [pictures.count/2, 0].max

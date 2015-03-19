@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20141106054649) do
     t.string   "remote_content_id"
     t.string   "owner_name"
     t.string   "owner_url"
-    t.boolean  "extra_copyright"
     t.text     "parent_content_ids"
+    t.boolean  "extra_copyright"
   end
 
   create_table "posts", force: true do |t|

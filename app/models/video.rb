@@ -12,13 +12,21 @@ class Video < Content
     order('view ASC').limit(18)
   end
 
-  def self.remote_videos
-    resp = RestClient.get("https://api.vimeo.com/me/videos", {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
+  def self.remote_videos(page: nil, per_page: nil)
+    _page = page.presence || 1
+    _per_page = per_page.presence || 20
+    resp = RestClient.get("https://api.vimeo.com/me/videos?page=#{_page}&per_page=#{_per_page}", {"Authorization" => "bearer #{ENV['VIMEO_ACCESS_TOKEN']}"})
     hash = JSON.parse(resp)
     hash["data"].map do |video_data|
       video_data_id = video_data["uri"].split("/").last
-      RemoteVideo.new(video_data) if Video.where(remote_content_id: video_data_id).blank?
+      r_video = RemoteVideo.new(video_data)
+      if Video.where(remote_content_id: video_data_id).present?
+        r_video.already_taken = true
+      end
+      r_video
     end.compact
+  rescue RestClient::BadRequest => e
+    []
   end
 
   def self.create_from_remote(video_id, user_id)

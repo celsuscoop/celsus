@@ -9,15 +9,27 @@
       %th
     - @videos.each do |video|
       %tr
-        %td= check_box_tag "video[id][]", video.link.split('/').last, false, class: "video_row", id: nil
+        %td
+          - unless video.already_taken?
+            = check_box_tag "video[id][]", video.link.split('/').last, false, class: "video_row", id: nil
         %td= image_tag video.thumbnail_url, style: "width: 200px;"
         %td= video.name
         %td= video.license_ko
-        %td= link_to '가져오기', fetch_remote_video_admin_videos_path(remote_video_uri: video.uri), class: 'btn btn-default btn-sm', method: 'post' if video.license.present?
+        %td
+          - if video.already_taken?
+            = '이미 가져온 비디오 입니다'
+          - else
+            = link_to '가져오기', fetch_remote_video_admin_videos_path(remote_video_uri: video.uri), class: 'btn btn-default btn-sm', method: 'post' if video.license.present?
     = link_to '선택가져오기', fetch_selected_remote_videos_admin_videos_path, class: 'btn btn-default btn-sm fetch_videos'
 
 - else
   = '새로운 비디오가 없습니다.'
+
+.pagination
+  - if @page != 1
+    = link_to '이전', remote_videos_admin_videos_path(page: @page - 1), class: 'btn btn-default', style: 'margin-right: 50px;'
+  - if @videos.present?
+    = link_to '다음', remote_videos_admin_videos_path(page: @page + 1), class: 'btn btn-default'
 
 :javascript
   $(function() {
