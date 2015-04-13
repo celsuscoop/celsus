@@ -1,7 +1,7 @@
 %section
-  .main_search_area
+  .main_search_area  
     %h1.main_search_area__text
-      Something from nothing
+      Something from nothing    
     .main_search_area__search-bar.search-bar
       = form_tag(search_contents_path, method: "get") do
         = text_field_tag(:q, value=nil, options = {:autofocus => true, placeholder: '검색어', class: 'search-bar__form'})
@@ -9,7 +9,7 @@
     .main_search_area__content-count.text-center
       %b= number_to_number(Content.count)
       releases
-
+      
   .container
     .content-box
       .content-box__topic

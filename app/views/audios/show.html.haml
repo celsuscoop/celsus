@@ -24,14 +24,14 @@
           .content-main__spec.content-spec
             .content-spec__title
               = image_tag 'icon-video.png'
-              %h3.iblc 제목 : #{@audio.title}
+              %h3.iblc #{@audio.title}
             %p.content-spec__text
-              내용 : #{@audio.body}
+              #{@audio.body}
             %p.content-spec__text
               = @audio.link
             %p.content-spec__text
               - if @audio.owner_name
-                권리자 : #{@audio.owner_name}
+                저작권자 : #{@audio.owner_name}
                 (
                 = link_to @audio.check_owner_url, @audio.check_owner_url
                 )
