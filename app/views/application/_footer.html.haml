@@ -3,15 +3,14 @@
     .container
       %ul
         %li{class: ( (params[:controller] =~ /video/) ? 'active': '') }= link_to '공지사항', posts_path(category: '공지사항')
-        %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}= link_to 'FAQ', '#'
-        %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}= link_to '신고/제보', '#'
-        %li{class: ( (params[:controller] =~ /post/) ? 'active': '')}= link_to '블로그', posts_path
+        %li{class: ( (params[:controller] =~ /image/) ? 'active': '')}= link_to 'FAQ', posts_path(category: 'FAQ')
+        %li{class: ( (params[:controller] =~ /audio/) ? 'active': '')}= link_to '저작권 안내', posts_path(category: '저작권 안내')
+        %li{class: ( (params[:controller] =~ /post/) ? 'active': '')}= link_to '콘텐츠 제출', posts_path(category: '콘텐츠 제출')
   .footer-info
     .container
       .logo.iblc
         = image_tag 'footer-logo.png', class: 'footer-logo'
       .info.iblc
-        고객지원센터
         .social-buttons
           = link_to "http://facebook.com/celsuscoop", target: '_blank' do
             %i.fa.fa-facebook
@@ -23,11 +22,11 @@
         %p 이메일   service@celsus.org
         %ul.menu-list
           %li.iblc.pull-left
-            %a{:href => ""} 자주하는 질문
+            %a{:href => "/posts?category=활동가+모집"} 활동가 모집
           %li.iblc.pull-left
-            %a{:href => ""} 컨텐츠 사용안내
+            %a{:href => "/posts?category=신고%2F제보"} 신고 / 제보
           %li.iblc.pull-left
-            %a{:href => ""} 상품구매안내
+            %a{:href => "/posts?category=연락처"} &nbsp;&nbsp;연 락 처&nbsp;&nbsp;
           .clearfix
         %small
           © 2014 Celsus. Powered by Celsus, manufactured by
@@ -36,18 +35,18 @@
       .menu-list.iblc
         %ul.menu-list__linkbox.iblc
           %li
-            %a{:href => ""} Celsus 회사소개
+            %a{:href => "/videos"} Celsus 비디오        
           %li
-            %a{:href => ""} Celsus 오디오
+            %a{:href => "/images"} Celsus 이미지
+          %li
+            %a{:href => "/audios"} Celsus 오디오
+          %li
+            %a{:href => "/remixes"} Celsus 리믹스            
         %ul.menu-list__linkbox.iblc
           %li
-            %a{:href => ""} Celsus 비디오
+            %a{:href => "/posts?category=개인정보+취급방침"} 개인정보취급방침
           %li
-            %a{:href => ""} Celsus 리믹스
-          %li
-            %a{:href => ""} Celsus 이미지
+            %a{:href => "/posts?category=이용약관"} 이용약관    
         %ul.menu-list__linkbox.iblc
           %li
-            %a{:href => ""} 개인정보취급방침
-          %li
-            %a{:href => ""} 이용약관
+            %a{:href => "/posts?category=셀수스+소개"} Celsus 협동조합소개
