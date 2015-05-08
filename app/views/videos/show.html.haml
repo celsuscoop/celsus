@@ -57,12 +57,13 @@
                       = "#{down['width']} X #{down['height']}"
                     %span.content-size__type
                       = down["type"]
-                .content-download__button.text-center
+                .content-download__button.text-center{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
                   %a{:href => "#", :role => "button", :class => "iblc"} 다운로드
               - else
                 .text-center
                   %br
                   = '다운로드를 제공하지 않습니다.'
+
     .content
       .content-box
         %h4.content-box__title
@@ -115,13 +116,29 @@
   = render 'warning_modal'
   = render 'social_share_script'
 
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Modal title
+      .modal-body
+        \...
+        =@video.title
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        .content-download__button
+          %a{:href => "#", :role => "button", :class => "iblc", :id => 'content-download-btn' } 다운로드
+
+
   :javascript
     $(function() {
       $(".content-download").on("click", ".content-size", function(e) {
         var $wrapper = $(e.delegateTarget);
         var url = $(this).data("download-url");
         $(this).find('.content-size__radio').prop('checked', true);
-        $wrapper.find('.content-download__button a').attr("href", url);
+        $("#content-download-btn").attr("href", url);
       });
     });
 
