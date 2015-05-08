@@ -28,7 +28,7 @@ class AudiosController < ApplicationController
     @audio.view = @audio.view + 1
     @audio.save
 
-    @author_audios = Video.where(user_id: @audio.user_id).where(is_open: true)
+    @author_audios = Audio.where(user_id: @audio.user_id).where(is_open: true)
     @friendly_audios = @audio.friendly_audios
 
     @warning = Warning.new
