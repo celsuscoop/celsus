@@ -1,0 +1,15 @@
+.content-box
+  %h4.content-box__title
+    ="최신 리믹스"
+  .content-box__imglist.content-imglist
+    .img-list.als-container
+      %span.als-prev
+        = image_tag 'icon-arrow-left.png', alt: '왼쪽버튼'
+      .als-viewport
+        %ul.als-wrapper
+          - Content.where(is_remix: true).order("created_at DESC").limit(10).each do |content|
+            %li.als-item
+              = link_to image_tag(content.thumbnail_url), content
+      %span.als-next
+        = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
+    .clearfix

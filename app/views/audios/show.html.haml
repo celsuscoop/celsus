@@ -83,7 +83,9 @@
             %span.als-next
               = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
           .clearfix
-    - if @author_audios.present?
+    - if request.referer =~/remix/
+      = render '/contents/recent_remix'
+    - elsif @author_audios.present?
       .content-box
         %h4.content-box__title
           ="작가의 최신 오디오"
