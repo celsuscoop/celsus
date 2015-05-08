@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     @videos  = Video.where(is_open: true).popular
     @audios  = Audio.where(is_open: true).popular
     @remixes = Content.where(is_remix: true).where(is_open: true).popular
+    @content_count = Content.count - Content.where(is_open: false, main: false).count
   end
   def temporary
     render layout: false

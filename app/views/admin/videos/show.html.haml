@@ -28,7 +28,7 @@
             %ul.content-download__list
               - if @video.download_links_hash.present?
                 - @video.download_links_hash.each do |down|
-                  %li.content-size{"data-download-url" => video_download_path(@video, type_quality: down["quality"])}
+                  %li.content-size{"data-download-url" => video_download_path(@video, type_quality: down["quality"], type_width: down["width"])}
                     %input.content-size__radio{:type => "radio", name: "video_radio", value: down["quality"]}
                     %span.content-size__option
                       = "#{down['width']} X #{down['height']}"
