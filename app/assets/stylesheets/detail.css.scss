@@ -188,7 +188,64 @@ li.category-list__item a {
     text-decoration: underline;
   }
 }
-
 .fb-comments {
   margin-top: 30px;
+}
+.download-info{
+  .modal-title{
+    margin: 0 17px;
+  }
+  .modal-body{
+    padding: 0 30px;
+    h3 {
+      color: #413f42;
+      font-weight: bold;
+      margin-top: 20px;
+      word-break: break-all;
+      font-size: 19px;
+    }
+    p{
+      color: #000;
+      margin-top: 7px;
+      font-size: 17px;
+    }
+    .modal-info {
+      padding-top: 30px;
+      p{
+        font-size: 13px;
+        margin-bottom: 13px;
+      }
+    }
+  }
+  .modal-footer{
+    .content-download__button{
+      display: block;
+      font-size: 17px !important;
+      width: 113px;
+      float: right;
+      margin-right: 36px;
+      padding: 11px 23px;
+      background-color: #e3519d;
+      border-radius: 50px;
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      font-color: #fff;
+      color: #fff;
+      font-size: 24px;
+      margin: 20px 0;
+      -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.25);
+      -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.25);
+      box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.25);
+      a{
+        color: #FFF;
+      }
+    }
+    .agree-area{
+      float: left;
+      padding-top: 30px;
+      padding-left: 20px;
+      font-size: 15px;
+    }
+  }
+
 }

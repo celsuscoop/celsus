@@ -116,18 +116,58 @@
   = render 'warning_modal'
   = render 'social_share_script'
 
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#myModal.modal.fade.download-info{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title Modal title
+        %h4#myModalLabel.modal-title 다운로드 이용안내
       .modal-body
-        \...
-        =@video.title
+        %h3
+          %i.fa.fa-check-circle
+          현재 다운로드 하시려는 저작물의 제목
+        .content-body
+          %p= @video.title
+        - if @video.owner_name
+          %h3
+            %i.fa.fa-check-circle
+            저작권자
+          %p
+            #{@video.owner_name}
+            (
+            = link_to @video.check_owner_url, @video.check_owner_url
+            )
+        %h3
+          %i.fa.fa-check-circle
+          사용 허가된 저작권 형태
+        %p
+          - if @video.extra_copyright
+            = link_to (@video.copy_right_image_url), @video.copy_right_licence_info_url
+          - else
+            = link_to image_tag(@video.copy_right_image_url), @video.copy_right_licence_info_url
+          = link_to "자세히보기", @video.copy_right_licence_info_url
+
+        / %h3 추가 유의사항
+        / %p
+        /   저작물내 모델의 초상권 미해결됨 (연락처 : #{@}         )
+        /   저작물내에 포함된 재산권 미해결됨 (연락처 :          )
+        .modal-info
+          %p
+            셀수스에서 제공하는 콘텐츠는 저작권법의 관련 규정에 의하여 저작권을 보호 받습니다.
+            %br
+            허가된 라이센스의 상세 내용은 위의 상세링크에서 확인해주십시오.
+
+          %p 사용 허가된 저작권은 동영상, 이미지, 오디오와 같은 저작물에 대한 것으로서, 해당 저작물에 포함된 인물의 초상권이나 로고, 캐릭터, 상표와 같은 재산권도 모두 일괄적으로 허가된 것은 아닙니다.
+
+          %p 저작물에 포함된 초상권, 재산권의 해결 여부는 별도로 표시되어 있으며, 만약 미해결 표시가 되어 있다면, 해당 초상권자나 재산권자로부터 이용 허가를 받지 않은 경우입니다.
+          %p 이 경우에는 공정이용인 경우에만 사용이 가능하며, 상업적 용도로 사용시에는 반드시 해당 권리자에게 별도의 허가를 받으셔야 합니다.
+
+
       .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        .agree-area
+          = label_tag '본인은 위의 모든 내용을 확인함'
+          = check_box_tag('agree-download-info', nil, true)
         .content-download__button
           %a{:href => "#", :role => "button", :class => "iblc", :id => 'content-download-btn' } 다운로드
 
@@ -151,6 +191,14 @@
       if(!checked){
         alert("비디오 옵션을 선택해주세요.");
         e.stopPropagation();
+      }
+    });
+
+    $("#content-download-btn").on("click", function(e){
+      var checked = $("#agree-download-info")[0].checked;
+      if(!checked){
+        alert("동의하기를 체크해주세요.");
+        e.preventDefault();
       }
     });
   });
