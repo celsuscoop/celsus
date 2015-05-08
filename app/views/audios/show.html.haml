@@ -124,13 +124,3 @@
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         .content-download__button
           %a{:href => audio_download_path(@audio), :role => "button", :class => "iblc", :id => 'content-download-btn' } 다운로드
-
-:javascript
-  $(function() {
-    $(".content-download").on("change", "input.content-size__radio", function(e) {
-      var $wrapper = $(e.delegateTarget);
-      var url = $(this).parent("li.content-size").data("download-url");
-      $wrapper.find('.content-download__button a').attr("href", url);
-    });
-  });
-
