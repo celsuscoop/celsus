@@ -40,6 +40,8 @@
                 - if current_user.admin? || current_user.su?
                   %li{class: ( (params[:controller] =~ /user/) ? 'active': '')}
                     = link_to '유저목록', [:admin, :users]
+                  %li{class: ( (params[:controller] =~ /activity/) ? 'active': '')}
+                    = link_to '다운현황', [:admin, :user_activities]
                   %li{class: ( (params[:controller] =~ /warning/) ? 'active' : '')}
                     = link_to "신고", [:admin, :warnings]
                   %li{class: ( (params[:controller] =~ /posts/) ? 'active' : '')}

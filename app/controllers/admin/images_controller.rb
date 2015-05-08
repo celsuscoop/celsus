@@ -42,9 +42,9 @@ class Admin::ImagesController < AdminController
 
   def show
     @image = Image.find(params[:id])
-
     @author_images = Image.where(user_id: @image.user_id).where(is_open: true)
     @friendly_images = @image.friendly_images
+    @activities = UserActivity.where(content_id: @image.id)
   end
 
   def destroy

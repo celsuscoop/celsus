@@ -8,7 +8,7 @@ class Ability
       if user.su?
         can :manage, :all
       elsif user.admin?
-        can :manage, [Content, Warning, Post, Category]
+        can :manage, [Content, Warning, Post, Category, UserActivity]
         can :read, [User]
       elsif user.contributor?
         can :crud, [Content], :user_id => user.id

@@ -82,6 +82,12 @@
               %span.als-next
                 = image_tag 'icon-arrow-right.png', alt: '오른쪽버튼'
             .clearfix
+      - if current_user.admin?
+        .content-box.content-activity
+          %h4.content-box__title
+            다운로드 정보
+          %p= "다운로드 횟수 : #{@activities.count}회"
+          %p= link_to "이 컨텐츠의 다운로드 현황 보러가기", [:admin, :user_activities, content_id: @video.id]
   .text-center
     = link_to '목록으로', [:admin, :videos], class: 'btn btn-default'
     = link_to '수정하기', [:edit, :admin, @video], class: 'btn btn-default' if can? :update, @video

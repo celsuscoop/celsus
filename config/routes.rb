@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :user_activities
     resources :posts
     resources :warnings
     resources :videos  do

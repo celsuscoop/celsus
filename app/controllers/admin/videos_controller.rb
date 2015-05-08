@@ -45,6 +45,7 @@ class Admin::VideosController < AdminController
     @video = Video.find(params[:id])
     @author_videos = Video.where(user_id: @video.user_id).where(is_open: true)
     @friendly_videos = @video.friendly_videos
+    @activities = UserActivity.where(content_id: @video.id)
   end
 
   def destroy

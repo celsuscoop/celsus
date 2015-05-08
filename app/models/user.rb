@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   ROLE_EDIT = %w{ guest contributor admin}
 
   def admin?
-    role == 'admin' || email == 'celsuscoop@gmail.com'
+    role == 'admin' || email == 'celsuscoop@gmail.com' || role == 'su'
   end
 
   def su?

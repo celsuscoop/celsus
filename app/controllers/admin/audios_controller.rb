@@ -43,9 +43,9 @@ class Admin::AudiosController < AdminController
 
   def show
     @audio = Audio.find(params[:id])
-
     @author_audios = Audio.where(user_id: @audio.user_id).where(is_open: true)
     @friendly_audios = @audio.friendly_audios
+    @activities = UserActivity.where(content_id: @audio.id)
   end
 
   def destroy

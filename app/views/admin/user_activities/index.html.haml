@@ -1,0 +1,36 @@
+%section
+  .page-header
+    %h2 다운 현황
+  %table.table.table
+    %thead
+      %tr
+        %th
+          %label 썸네일
+        %th
+          %label 날짜/시간
+        %th
+          %label 사용자
+        %th
+          %label 카테고리
+        %th
+          %label 컨텐츠 제목
+        %th
+    %tbody
+      - @activities.each do |activity|
+        %tr
+          %td{ style: "width: 195px;"}
+            .thumb{ style: "background-image: url(#{activity.content.thumbnail_url}); height: 100px; width: 150px;"}
+          %td
+            %p= activity.created_at.strftime("%y/%m/%d")
+            %p= activity.created_at.strftime("%H:%M")
+          %td
+            %p="#{activity.user.name} / #{activity.user.role}"
+            %p #{activity.user.email}
+          %td
+            = activity.content.class
+          %td
+            = link_to activity.content.title, [:admin, activity.content]
+
+  .paginate
+    = paginate @activities
+
