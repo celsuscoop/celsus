@@ -50,13 +50,13 @@
               - else
                 = link_to image_tag(@audio.copy_right_image_url), @audio.copy_right_licence_info_url
           .content-main__download.content-download
-            .content-download__button.text-center
-              - if @audio.download_url.present?
-                %a{:href => audio_download_path(@audio), :role => "button", :class => "iblc"} 다운로드
-              - else
-                .text-center
-                  %br
-                  = '다운로드를 제공하지 않습니다.'
+            - if @audio.download_url.present?
+              .content-download__button.text-center{"data-target" => "#myModal2", "data-toggle" => "modal", :type => "button"}
+                %a{:role => "button", :class => "iblc"} 다운로드
+            - else
+              .text-center
+                %br
+                = '다운로드를 제공하지 않습니다.'
   .content
     - if @audio.tags.present?
       .content-box
@@ -109,6 +109,21 @@
 
   = render 'warning_modal'
   = render 'social_share_script'
+
+#myModal2.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModal2Label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModal2Label.modal-title Modal title
+      .modal-body
+        \...
+        =@audio.title
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        .content-download__button
+          %a{:href => audio_download_path(@audio), :role => "button", :class => "iblc", :id => 'content-download-btn' } 다운로드
 
 :javascript
   $(function() {
