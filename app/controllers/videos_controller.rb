@@ -53,7 +53,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:video_id])
     authorize! :download, @video
     @video.increase_download_count(current_user)
-    redirect_to @video.download_url(params[:type_quality])
+    redirect_to @video.download_url(params[:type_quality], params[:type_width])
   end
 
   def video_params

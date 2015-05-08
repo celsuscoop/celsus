@@ -67,8 +67,8 @@ class Video < Content
     self.source_info["download"]
   end
 
-  def download_url(type_quality)
-    download_info = self.download_links_hash.select{|type| type["quality"] == type_quality }.first
+  def download_url(type_quality, type_width)
+    download_info = self.download_links_hash.select{|type| (type["quality"] == type_quality) && (type["width"] == type_width.to_i)}.first
     return if download_info.blank?
 
     expire_at = Time.parse(download_info["expires"])

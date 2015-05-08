@@ -51,14 +51,14 @@
             %ul.content-download__list
               - if @video.download_links_hash.present?
                 - @video.download_links_hash.each do |down|
-                  %li.content-size{"data-download-url" => video_download_path(@video, type_quality: down["quality"])}
+                  %li.content-size{"data-download-url" => video_download_path(@video, type_quality: down["quality"], type_width: down["width"])}
                     %input.content-size__radio{:type => "radio", name: "video_radio", value: down["quality"]}
                     %span.content-size__option
                       = "#{down['width']} X #{down['height']}"
                     %span.content-size__type
                       = down["type"]
                 .content-download__button.text-center{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-                  %a{:href => "#", :role => "button", :class => "iblc"} 다운로드
+                  %a{:href => "#", :role => "button", :class => "iblc", id: 'video-quality-check'} 다운로드
               - else
                 .text-center
                   %br
