@@ -10,11 +10,11 @@ Rails.application.routes.draw do
     get "master_login" => "pages#master_login"
   end
 
-  # get '/' => 'pages#temporary'
-  # get '/temp_root' => 'pages#home', as: :root
+  get '/' => 'pages#temporary'
+  get '/temp_root' => 'pages#home', as: :root
 
-  root 'pages#home'
-  get 'pages/temporary' => 'pages#temporary'
+  # root 'pages#home'
+  # get 'pages/temporary' => 'pages#temporary'
 
   resources :contents do
     get 'search', on: :collection
