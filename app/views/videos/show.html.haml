@@ -132,14 +132,27 @@
           %a{:href => "#", :role => "button", :class => "iblc", :id => 'content-download-btn' } 다운로드
 
 
-  :javascript
-    $(function() {
-      $(".content-download").on("click", ".content-size", function(e) {
-        var $wrapper = $(e.delegateTarget);
-        var url = $(this).data("download-url");
-        $(this).find('.content-size__radio').prop('checked', true);
-        $("#content-download-btn").attr("href", url);
-      });
+:javascript
+  $(function() {
+    $(".content-download").on("click", ".content-size", function(e) {
+      var $wrapper = $(e.delegateTarget);
+      var url = $(this).data("download-url");
+      $(this).find('.content-size__radio').prop('checked', true);
+      $("#content-download-btn").attr("href", url);
     });
+
+    $("#video-quality-check").on("click", function(e){
+      var checked = false;
+      var obj = $(".content-size__radio");
+      $.each( obj, function( key, value ) {
+        if(value.checked){ checked = true; }
+      });
+
+      if(!checked){
+        alert("비디오 옵션을 선택해주세요.");
+        e.stopPropagation();
+      }
+    });
+  });
 
 
