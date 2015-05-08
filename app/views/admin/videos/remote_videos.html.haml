@@ -27,9 +27,9 @@
 
 .pagination
   - if @page != 1
-    = link_to '이전', remote_videos_admin_videos_path(page: @page - 1), class: 'btn btn-default', style: 'margin-right: 50px;'
+    = link_to '이전', remote_videos_admin_videos_path(page: @page.to_i - 1), class: 'btn btn-default', style: 'margin-right: 50px;'
   - if @videos.present?
-    = link_to '다음', remote_videos_admin_videos_path(page: @page + 1), class: 'btn btn-default'
+    = link_to '다음', remote_videos_admin_videos_path(page: @page.to_i + 1), class: 'btn btn-default'
 
 :javascript
   $(function() {

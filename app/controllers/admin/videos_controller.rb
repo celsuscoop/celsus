@@ -74,7 +74,8 @@ class Admin::VideosController < AdminController
   end
 
   def remote_videos
-    @videos = Video.remote_videos
+    @videos = Video.remote_videos(page: params[:page])
+    @page = params[:page] || 1
   end
 
   def fetch_remote_video
