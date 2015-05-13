@@ -50,8 +50,10 @@
   }
   .content-box__description {
     .label {
+      display: inline-block;
       margin-right: 5px;
       font-size: 100%;
+      margin-bottom: 10px;
       background-color: #989898;
       a {
         color: #fff;
