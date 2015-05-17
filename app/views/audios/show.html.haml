@@ -26,9 +26,7 @@
               = image_tag 'icon-video.png'
               %h3.iblc #{@audio.title}
             %p.content-spec__text
-              #{@audio.body}
-            %p.content-spec__text
-              = @audio.link
+              #{@audio.body}          
             %p.content-spec__text
               - if @audio.owner_name
                 저작권자 : #{@audio.owner_name}

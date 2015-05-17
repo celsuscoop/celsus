@@ -4,7 +4,7 @@
       Something from nothing
     .main_search_area__search-bar.search-bar
       = form_tag(search_contents_path, method: "get") do
-        = text_field_tag(:q, value=nil, options = {:autofocus => true, placeholder: '검색어', class: 'search-bar__form'})
+        = text_field_tag(:q, value=nil, options = {:autofocus => true, placeholder: '마음껏 가져다 쓰세요!', class: 'search-bar__form'})
         = submit_tag "검색", class: 'search-bar__submit_btn'
     .main_search_area__content-count.text-center
       %b= number_to_number(@content_count)
