@@ -22,3 +22,5 @@
           = user.role
         %td
           = link_to '수정', [:edit, :admin, user], class: 'btn btn-default btn-xs' if can? :update,user
+.paginate
+  = paginate @users
